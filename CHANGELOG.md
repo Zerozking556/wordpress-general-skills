@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- Added planned roadmap entries for `wp-wpcli-and-ops`, `wp-playground-development`, and `wp-phpstan-review` to the README skills table with in-progress status markers
+- Clarified README skill status labels so shipped and in-progress skill entries are easier to distinguish
+- Added initial Claude and Codex skill scaffolds for `wp-wpcli-and-ops`, `wp-playground-development`, and `wp-phpstan-review`, plus shared reference docs and six new slash commands
+- Expanded README command coverage to include the new ops, Playground, and PHPStan command pairs
+- Strengthened the in-progress WP-CLI, Playground, and PHPStan skills with more concrete examples, safer review heuristics, and clearer reference patterns
+- Added reusable sample fixture files for the new WP-CLI, Playground, and PHPStan skills so contributors can adapt real examples instead of starting from scratch
+
 ## [2.1.0] - 2026-04-17
 
 ### Added

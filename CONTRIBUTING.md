@@ -96,6 +96,14 @@ claude-skills/
   wp-block-development/
   wp-theme-development/
   wp-woocommerce-dev/
+  wp-rest-api-development/
+  wp-admin-ui-development/
+  wp-migration-upgrade-review/
+  wp-accessibility-review/
+  wp-test-strategy/
+  wp-wpcli-and-ops/
+  wp-playground-development/
+  wp-phpstan-review/
 
 codex-skills/
   wp-performance-review/
@@ -104,6 +112,14 @@ codex-skills/
   wp-block-development/
   wp-theme-development/
   wp-woocommerce-dev/
+  wp-rest-api-development/
+  wp-admin-ui-development/
+  wp-migration-upgrade-review/
+  wp-accessibility-review/
+  wp-test-strategy/
+  wp-wpcli-and-ops/
+  wp-playground-development/
+  wp-phpstan-review/
 
 commands/
   wp-perf-review.md
@@ -128,6 +144,12 @@ commands/
   wp-a11y.md
   wp-test-review.md
   wp-test.md
+  wp-ops-review.md
+  wp-ops.md
+  wp-playground-review.md
+  wp-playground.md
+  wp-phpstan-review.md
+  wp-phpstan.md
 ```
 
 ## Skill Authoring Guidelines

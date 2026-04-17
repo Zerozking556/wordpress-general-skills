@@ -9,12 +9,12 @@
     <img src="https://img.shields.io/badge/Claude%20Code-Ready-1f6feb?style=for-the-badge" alt="Claude Code Ready" />
   </a>
   <img src="https://img.shields.io/badge/Codex-Parallel%20skills-0a7ea4?style=for-the-badge" alt="Codex parallel skills" />
-  <img src="https://img.shields.io/badge/WordPress-11%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
-  <img src="https://img.shields.io/badge/Commands-22%20slash%20commands-2da44e?style=for-the-badge" alt="22 slash commands" />
+  <img src="https://img.shields.io/badge/WordPress-14%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
+  <img src="https://img.shields.io/badge/Commands-28%20slash%20commands-2da44e?style=for-the-badge" alt="28 slash commands" />
   <img src="https://img.shields.io/badge/Focus-Code%20review%20and%20triage-8250df?style=for-the-badge" alt="Code review and triage" />
 </p>
 
-Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, and testing.
+Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, WP-CLI operations, Playground, and PHPStan.
 
 ## Why This Pack
 
@@ -29,7 +29,7 @@ Professional WordPress skills for [Claude Code](https://claude.ai/code) and Code
 
 ```text
 claude-skills/   # Claude-oriented skill pack with shared reference docs
-codex-skills/    # Codex-oriented skill wrappers for the same eleven domains
+codex-skills/    # Codex-oriented skill wrappers for the same fourteen domains
 commands/        # Claude slash commands
 public/          # README assets
 docs/            # GitHub Pages single-page site
@@ -49,6 +49,8 @@ python3 scripts/validate_repo.py
 
 ## Available Skills
 
+`✅` Available now · `🚧` In progress
+
 | Skill | Focus | Status |
 |-------|-------|--------|
 | **wp-performance-review** | Performance bottlenecks, query patterns, caching, cron, asset loading | ✅ |
@@ -62,6 +64,9 @@ python3 scripts/validate_repo.py
 | **wp-migration-upgrade-review** | Versioned upgrades, `dbDelta()`, backfills, rollout safety, schema changes | ✅ |
 | **wp-accessibility-review** | Semantic markup, keyboard access, focus behavior, labels, ARIA, accessible interactions | ✅ |
 | **wp-test-strategy** | Unit vs integration vs E2E coverage, test planning, regression risk, WordPress test gaps | ✅ |
+| **wp-wpcli-and-ops** | WP-CLI workflows, multisite operations, search-replace safety, automation, and deployment checks | 🚧 |
+| **wp-playground-development** | WordPress Playground blueprints, reproducible demos, zero-setup bug repros, and embed patterns | 🚧 |
+| **wp-phpstan-review** | PHPStan for WordPress projects, baseline strategy, CI integration, and practical static-analysis review | 🚧 |
 
 ## Installation
 
@@ -190,6 +195,12 @@ Claude skills include a full review command and a faster triage command.
 | `/wp-a11y [path]` | Fast accessibility scan for semantic, keyboard, focus, and ARIA issues |
 | `/wp-test-review [path]` | Full test strategy review with prioritized unit, integration, and E2E recommendations |
 | `/wp-test [path]` | Fast testing scan for existing coverage and likely test gaps |
+| `/wp-ops-review [path]` | Full WP-CLI and operations review for custom commands, multisite scope, and maintenance workflows |
+| `/wp-ops [path]` | Fast WP-CLI and operational risk scan |
+| `/wp-playground-review [path]` | Full Playground review for Blueprints, repro environments, and embed flows |
+| `/wp-playground [path]` | Fast Playground scan for Blueprint and repro issues |
+| `/wp-phpstan-review [path]` | Full PHPStan review for config, baselines, CI wiring, and WordPress-specific analysis setup |
+| `/wp-phpstan [path]` | Fast PHPStan scan for config and static-analysis issues |
 
 ### Quick Examples
 
@@ -214,6 +225,15 @@ Claude skills include a full review command and a faster triage command.
 
 # Plan tests for a risky plugin change
 /wp-test-review wp-content/plugins/my-plugin
+
+# Review custom WP-CLI operations and runbooks
+/wp-ops-review wp-content/plugins/my-plugin
+
+# Review a WordPress Playground Blueprint or demo setup
+/wp-playground-review docs/playground
+
+# Review PHPStan setup for a plugin or theme
+/wp-phpstan-review .
 ```
 
 When installed from the marketplace, commands are namespaced:
@@ -237,6 +257,9 @@ Find slow queries in this plugin
 Review these custom REST routes
 Check this plugin settings page
 Audit this release migration before deploy
+Review this WP-CLI command for operational risk
+Check this Blueprint for a reliable Playground repro
+Audit this phpstan.neon for WordPress plugin analysis
 Review this theme for accessibility issues
 What tests should I add for this change?
 ```

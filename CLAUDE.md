@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository contains a parallel WordPress skill pack for Claude Code and Codex covering eleven domains:
+This repository contains a parallel WordPress skill pack for Claude Code and Codex covering fourteen domains:
 
 - Performance reviews
 - Security reviews
@@ -17,6 +17,9 @@ This repository contains a parallel WordPress skill pack for Claude Code and Cod
 - Migration and upgrade reviews
 - Accessibility reviews
 - Test strategy reviews
+- WP-CLI and operations reviews
+- Playground reviews
+- PHPStan reviews
 
 The Claude and Codex wrappers are designed for WordPress 6.x+ codebases and provide structured review workflows, shared reference docs, quick triage commands for Claude, and cross-skill handoffs when a finding belongs in another specialty.
 
@@ -57,6 +60,15 @@ claude-skills/                 # Claude skill definitions and shared references
   wp-test-strategy/
     SKILL.md
     references/
+  wp-wpcli-and-ops/
+    SKILL.md
+    references/
+  wp-playground-development/
+    SKILL.md
+    references/
+  wp-phpstan-review/
+    SKILL.md
+    references/
 
 codex-skills/                  # Codex-oriented wrappers for the same domains
   wp-performance-review/
@@ -80,6 +92,12 @@ codex-skills/                  # Codex-oriented wrappers for the same domains
   wp-accessibility-review/
     SKILL.md
   wp-test-strategy/
+    SKILL.md
+  wp-wpcli-and-ops/
+    SKILL.md
+  wp-playground-development/
+    SKILL.md
+  wp-phpstan-review/
     SKILL.md
 
 commands/                      # Slash command definitions
@@ -105,6 +123,12 @@ commands/                      # Slash command definitions
   wp-a11y.md                   # Quick accessibility scan
   wp-test-review.md            # Full test strategy review command
   wp-test.md                   # Quick testing strategy scan
+  wp-ops-review.md             # Full WP-CLI and operations review command
+  wp-ops.md                    # Quick WP-CLI and operations scan
+  wp-playground-review.md      # Full Playground review command
+  wp-playground.md             # Quick Playground scan
+  wp-phpstan-review.md         # Full PHPStan review command
+  wp-phpstan.md                # Quick PHPStan scan
 
 README.md                      # Public documentation and installation guidance
 CHANGELOG.md                   # Release history

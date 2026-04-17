@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WordPress Skills for Claude and Codex</title>
+  <title>Claude Skills and Codex Skills for Wordpress Development</title>
   <meta
     name="description"
-    content="GitHub Pages site for the WordPress skill pack for Claude Code and Codex, covering 11 review domains and 22 Claude slash commands."
+    content="GitHub Pages site for the WordPress skill pack for Claude Code and Codex, covering 14 review domains and 28 Claude slash commands."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -70,12 +70,12 @@
       />
       <div class="hero-overlay"></div>
       <div class="shell hero-content">
-        <p class="eyebrow">11 review domains • 22 Claude commands • Parallel Codex wrappers</p>
+        <p class="eyebrow">14 review domains • 28 Claude commands • Parallel Codex wrappers</p>
         <h1>WordPress skills for code review, fast triage, and cleaner installs.</h1>
         <p class="hero-copy">
           A developer-focused skill pack for Claude Code and Codex across performance,
           security, plugins, blocks, themes, WooCommerce, REST APIs, admin UI,
-          migrations, accessibility, and testing.
+          migrations, accessibility, testing, WP-CLI ops, Playground, and PHPStan.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#installation">Install the Pack</a>
@@ -83,11 +83,11 @@
         </div>
         <div class="hero-stats">
           <div>
-            <strong>11</strong>
+            <strong>14</strong>
             <span>WordPress review domains</span>
           </div>
           <div>
-            <strong>22</strong>
+            <strong>28</strong>
             <span>Claude slash commands</span>
           </div>
           <div>
@@ -122,7 +122,7 @@
       <div class="shell">
         <div class="section-heading">
           <p class="eyebrow">Available Skills</p>
-          <h2>Eleven WordPress domains, one coherent review pack.</h2>
+          <h2>Fourteen WordPress domains, one coherent review pack.</h2>
           <p>
             Each skill is built to handle a clear slice of WordPress development so the
             model can review with more precision and less generic advice.
@@ -140,6 +140,9 @@
           <article class="skill-card"><h3>wp-migration-upgrade-review</h3><p>Version guards, <code>dbDelta()</code>, schema changes, backfills, and rollout safety.</p></article>
           <article class="skill-card"><h3>wp-accessibility-review</h3><p>Semantic markup, keyboard support, focus management, labels, and ARIA usage.</p></article>
           <article class="skill-card"><h3>wp-test-strategy</h3><p>Unit, integration, and E2E test selection for risky WordPress changes.</p></article>
+          <article class="skill-card"><h3>wp-wpcli-and-ops</h3><p>Custom CLI commands, multisite operations, search-replace safety, and maintenance runbooks.</p></article>
+          <article class="skill-card"><h3>wp-playground-development</h3><p>Blueprints, reproducible demos, Playground CLI workflows, and zero-setup bug repros.</p></article>
+          <article class="skill-card"><h3>wp-phpstan-review</h3><p>PHPStan config, baselines, CI wiring, WordPress stubs, and practical static-analysis rollout.</p></article>
         </div>
       </div>
     </section>
@@ -218,6 +221,12 @@
           <article><h3>/wp-a11y</h3><p>Quick semantic and keyboard scan.</p></article>
           <article><h3>/wp-test-review</h3><p>Full test strategy review.</p></article>
           <article><h3>/wp-test</h3><p>Quick coverage and gap scan.</p></article>
+          <article><h3>/wp-ops-review</h3><p>Full WP-CLI and operations review.</p></article>
+          <article><h3>/wp-ops</h3><p>Quick operational risk scan.</p></article>
+          <article><h3>/wp-playground-review</h3><p>Full Playground review.</p></article>
+          <article><h3>/wp-playground</h3><p>Quick Blueprint and repro scan.</p></article>
+          <article><h3>/wp-phpstan-review</h3><p>Full PHPStan review.</p></article>
+          <article><h3>/wp-phpstan</h3><p>Quick static-analysis scan.</p></article>
         </div>
       </div>
     </section>
@@ -278,7 +287,7 @@ What tests should I add for this change?</code></pre>
           <p class="eyebrow">Repository Layout</p>
           <h2>Parallel wrappers, shared references, one source of domain truth.</h2>
           <pre class="repo-tree"><code>claude-skills/   # Claude-oriented skill pack with shared reference docs
-codex-skills/    # Codex-oriented skill wrappers for the same eleven domains
+codex-skills/    # Codex-oriented skill wrappers for the same fourteen domains
 commands/        # Claude slash commands
 public/          # README assets
 docs/            # GitHub Pages site</code></pre>
