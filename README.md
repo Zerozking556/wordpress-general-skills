@@ -32,9 +32,12 @@ claude-skills/   # Claude-oriented skill pack with shared reference docs
 codex-skills/    # Codex-oriented skill wrappers for the same eleven domains
 commands/        # Claude slash commands
 public/          # README assets
+docs/            # GitHub Pages single-page site
 ```
 
 The Codex skills reuse the domain references stored under `claude-skills/` so the review heuristics stay aligned without duplicating the whole reference library.
+
+The project also includes a deployable GitHub Pages site in `docs/`.
 
 ## Available Skills
 

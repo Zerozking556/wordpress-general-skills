@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WordPress Skills for Claude and Codex</title>
+  <meta
+    name="description"
+    content="GitHub Pages site for the WordPress skill pack for Claude Code and Codex, covering 11 review domains and 22 Claude slash commands."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.css"
+  />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="WordPress Skills home">
+        <span class="brand-mark">
+          <span>W</span>
+        </span>
+        <span class="brand-copy">
+          <strong>WordPress Skills</strong>
+          <span>for Claude and Codex</span>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Primary">
+        <a href="#skills">Skills</a>
+        <a href="#installation">Install</a>
+        <a href="#commands">Commands</a>
+        <a href="#coverage">Coverage</a>
+      </nav>
+
+      <div class="header-actions" aria-label="Project Links">
+        <a class="action-chip" href="https://github.com/jorgerosal/wordpress-skills" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.3-3.9-1.3a3 3 0 0 0-1.3-1.7c-1-.7.1-.7.1-.7a2.4 2.4 0 0 1 1.8 1.2 2.5 2.5 0 0 0 3.4 1 2.4 2.4 0 0 1 .8-1.5c-2.6-.3-5.3-1.3-5.3-5.8a4.5 4.5 0 0 1 1.2-3.1 4.2 4.2 0 0 1 .1-3.1s1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2a4.2 4.2 0 0 1 .1 3.1 4.5 4.5 0 0 1 1.2 3.1c0 4.5-2.7 5.5-5.3 5.8a2.7 2.7 0 0 1 .8 2.1v3.1c0 .3.2.7.8.6A12 12 0 0 0 12 .7Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="action-chip" href="https://developer.wordpress.org/" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 1 0 0 19.6 9.8 9.8 0 0 0 0-19.6Zm.9 2.2c1.8.1 3 .9 3.7 2.1-.3-.1-.9-.1-1.4.1-1 .4-1.2 1.1-2.1 1.3-.8.1-1.5-.6-2.4-.4-.5.1-1 .4-1.3.9-.2-.5-.4-1-.4-1.7 0-1.4 1.3-2.3 3.9-2.3Zm-4 3.8c.1 0 .3 0 .4.1-.5 1.4-.2 2.5.8 3.3.8.7 1.9 1 3 .7 1-.2 1.8-.7 2.4-1.4.1.3.2.7.2 1 0 1.7-1 3-3 3.5v2.5h1.7l-2.4 3.1-2.4-3.1h1.5v-2.5c-2.3-.5-3.6-2-3.6-4.1 0-1.3.6-2.4 1.4-3.1Z"/></svg>
+          <span>WordPress</span>
+        </a>
+        <a class="action-chip" href="https://claude.ai/code" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.3 7v10L12 21.5 19.7 17V7L12 2.5Zm0 2.4 5.6 3.2v7.8L12 19.1l-5.6-3.2V8.1L12 4.9Zm-3 3.4h2.2v7.4H9V8.3Zm3.8 0H15c2 0 3.2 1 3.2 2.8 0 1.3-.6 2.1-1.8 2.5l2.3 2.1h-2.8l-1.8-1.8h-.7v1.8h-2.2V8.3Z"/></svg>
+          <span>Claude Code</span>
+        </a>
+        <a class="action-chip" href="#codex-install">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3v-13Zm2 2v9h14v-9H5Zm2.2 1.6h2.2l1.5 2.2 1.5-2.2h2.2l-2.6 3.6 2.7 3.8h-2.2l-1.6-2.3-1.7 2.3H7.2l2.8-3.8-2.8-3.6Z"/></svg>
+          <span>Codex Skills</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img
+        class="hero-image"
+        src="./assets/hero-wordpress-skills.jpg"
+        alt="WordPress skills visual"
+      />
+      <div class="hero-overlay"></div>
+      <div class="shell hero-content">
+        <p class="eyebrow">11 review domains • 22 Claude commands • Parallel Codex wrappers</p>
+        <h1>WordPress skills for code review, fast triage, and cleaner installs.</h1>
+        <p class="hero-copy">
+          A developer-focused skill pack for Claude Code and Codex across performance,
+          security, plugins, blocks, themes, WooCommerce, REST APIs, admin UI,
+          migrations, accessibility, and testing.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#installation">Install the Pack</a>
+          <a class="button secondary" href="#skills">Explore the Skills</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <strong>11</strong>
+            <span>WordPress review domains</span>
+          </div>
+          <div>
+            <strong>22</strong>
+            <span>Claude slash commands</span>
+          </div>
+          <div>
+            <strong>2</strong>
+            <span>Agent-ready skill packs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-muted">
+      <div class="shell intro-grid">
+        <div>
+          <h2>Why this pack</h2>
+          <p>
+            The pack is designed for real WordPress codebases, not toy examples. It
+            keeps the review flow opinionated and practical, with clear severity,
+            file-level guidance, and cross-skill handoffs when a finding belongs in a
+            different domain.
+          </p>
+        </div>
+        <ul class="feature-list">
+          <li>Structured workflows for real plugin, theme, and WooCommerce code</li>
+          <li>Quick triage before deeper review</li>
+          <li>Shared references between Claude and Codex</li>
+          <li>Installation paths for project, user, and single-skill use</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band" id="skills">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Available Skills</p>
+          <h2>Eleven WordPress domains, one coherent review pack.</h2>
+          <p>
+            Each skill is built to handle a clear slice of WordPress development so the
+            model can review with more precision and less generic advice.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><h3>wp-performance-review</h3><p>Queries, caching, cron, asset loading, and request-level bottlenecks.</p></article>
+          <article class="skill-card"><h3>wp-security-review</h3><p>XSS, SQL injection, CSRF, authorization gaps, and unsafe uploads.</p></article>
+          <article class="skill-card"><h3>wp-plugin-development</h3><p>Lifecycle hooks, Settings API, structure, i18n, and WordPress.org patterns.</p></article>
+          <article class="skill-card"><h3>wp-block-development</h3><p><code>block.json</code>, editor logic, render callbacks, deprecations, and Interactivity API.</p></article>
+          <article class="skill-card"><h3>wp-theme-development</h3><p><code>theme.json</code>, templates, FSE patterns, template parts, and style variations.</p></article>
+          <article class="skill-card"><h3>wp-woocommerce-dev</h3><p>HPOS, CRUD APIs, gateways, cart fragments, template overrides, and scheduling.</p></article>
+          <article class="skill-card"><h3>wp-rest-api-development</h3><p>Custom routes, permission callbacks, schema design, validation, and response shape.</p></article>
+          <article class="skill-card"><h3>wp-admin-ui-development</h3><p>Settings screens, admin menus, notices, screen targeting, and admin UX structure.</p></article>
+          <article class="skill-card"><h3>wp-migration-upgrade-review</h3><p>Version guards, <code>dbDelta()</code>, schema changes, backfills, and rollout safety.</p></article>
+          <article class="skill-card"><h3>wp-accessibility-review</h3><p>Semantic markup, keyboard support, focus management, labels, and ARIA usage.</p></article>
+          <article class="skill-card"><h3>wp-test-strategy</h3><p>Unit, integration, and E2E test selection for risky WordPress changes.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-accent" id="installation">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Installation</p>
+          <h2>Pick the install path that matches how you work.</h2>
+          <p>
+            The primary flow is project install, but the site also covers user-account
+            installs, one-skill installs, and the shared-reference setup Codex wrappers need.
+          </p>
+        </div>
+
+        <div class="install-layout">
+          <aside class="install-tabs" aria-label="Installation Options">
+            <button class="install-tab active" data-install="claude-project">Claude project install</button>
+            <button class="install-tab" data-install="claude-user">Claude user install</button>
+            <button class="install-tab" data-install="claude-single">Claude single skill</button>
+            <button class="install-tab" data-install="codex-all" id="codex-install">Codex all skills</button>
+            <button class="install-tab" data-install="codex-single">Codex one skill</button>
+          </aside>
+
+          <div class="install-panel">
+            <div class="install-meta" id="install-meta"></div>
+            <div class="install-code-block">
+              <div class="code-head">
+                <span id="install-title">Claude project install</span>
+                <button class="copy-button" id="copy-install" type="button">Copy commands</button>
+              </div>
+              <pre><code id="install-code"></code></pre>
+            </div>
+            <div class="demo-shell">
+              <div class="demo-head">
+                <span>Glorious install demo</span>
+                <button class="demo-button" id="play-demo" type="button">Play demo</button>
+              </div>
+              <div class="demo-stage" id="demo-stage"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="commands">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Slash Commands</p>
+          <h2>Claude commands for quick checks and full reviews.</h2>
+          <p>
+            Every domain includes a deeper review command and a faster triage command so
+            you can start broad or go straight into specifics.
+          </p>
+        </div>
+        <div class="command-grid">
+          <article><h3>/wp-perf-review</h3><p>Full performance review with grouped findings.</p></article>
+          <article><h3>/wp-perf</h3><p>Fast scan for critical performance issues.</p></article>
+          <article><h3>/wp-sec-review</h3><p>Full security audit for exploitable patterns.</p></article>
+          <article><h3>/wp-sec</h3><p>Quick security triage.</p></article>
+          <article><h3>/wp-plugin-review</h3><p>Full plugin architecture and standards review.</p></article>
+          <article><h3>/wp-plugin</h3><p>Quick plugin structure scan.</p></article>
+          <article><h3>/wp-block-review</h3><p>Full Gutenberg block review.</p></article>
+          <article><h3>/wp-block</h3><p>Quick block API scan.</p></article>
+          <article><h3>/wp-theme-review</h3><p>Full block or classic theme review.</p></article>
+          <article><h3>/wp-theme</h3><p>Quick theme and FSE scan.</p></article>
+          <article><h3>/wp-woo-review</h3><p>Full WooCommerce extension review.</p></article>
+          <article><h3>/wp-woo</h3><p>Quick WooCommerce compatibility scan.</p></article>
+          <article><h3>/wp-rest-review</h3><p>Full REST API review.</p></article>
+          <article><h3>/wp-rest</h3><p>Quick route and permission scan.</p></article>
+          <article><h3>/wp-admin-review</h3><p>Full admin UI review.</p></article>
+          <article><h3>/wp-admin</h3><p>Quick admin screen scan.</p></article>
+          <article><h3>/wp-migration-review</h3><p>Full migration and upgrade review.</p></article>
+          <article><h3>/wp-migration</h3><p>Quick migration risk scan.</p></article>
+          <article><h3>/wp-a11y-review</h3><p>Full accessibility review.</p></article>
+          <article><h3>/wp-a11y</h3><p>Quick semantic and keyboard scan.</p></article>
+          <article><h3>/wp-test-review</h3><p>Full test strategy review.</p></article>
+          <article><h3>/wp-test</h3><p>Quick coverage and gap scan.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-muted">
+      <div class="shell usage-grid">
+        <div>
+          <p class="eyebrow">Natural Language Usage</p>
+          <h2>Ask naturally. Let the right skill take over.</h2>
+          <p>
+            The pack is designed so people can ask for a review the way they actually
+            think about the problem instead of memorizing a wall of commands.
+          </p>
+        </div>
+        <div class="usage-examples">
+          <pre><code>Review this plugin for performance issues
+Audit this theme for security problems
+Help me debug this block.json setup
+Check this WooCommerce extension for HPOS issues
+Review these custom REST routes
+Check this plugin settings page
+Audit this release migration before deploy
+Review this theme for accessibility issues
+What tests should I add for this change?</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="coverage">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Coverage</p>
+          <h2>What each skill is built to cover.</h2>
+          <p>
+            A quick way to understand where each domain starts, what it looks for, and
+            how the pack avoids collapsing every review into one vague checklist.
+          </p>
+        </div>
+        <div class="coverage-list">
+          <details open><summary>wp-performance-review</summary><p>Database query anti-patterns, cache strategy, cron misuse, asset loading, N+1 patterns, and slow hooks.</p></details>
+          <details><summary>wp-security-review</summary><p>Output escaping, prepared queries, nonces, capability checks, upload handling, and dangerous functions.</p></details>
+          <details><summary>wp-plugin-development</summary><p>Plugin structure, activation and uninstall flows, Settings API, CPTs, taxonomies, i18n, and standards readiness.</p></details>
+          <details><summary>wp-block-development</summary><p><code>block.json</code>, editor logic, save behavior, render callbacks, deprecations, and Interactivity API.</p></details>
+          <details><summary>wp-theme-development</summary><p><code>theme.json</code>, template hierarchy, style variations, block patterns, and classic-to-block migration.</p></details>
+          <details><summary>wp-woocommerce-dev</summary><p>HPOS, CRUD APIs, gateways, template overrides, cart fragments, and Action Scheduler.</p></details>
+          <details><summary>wp-rest-api-development</summary><p>Route registration, permission callbacks, request validation, schema handling, and response design.</p></details>
+          <details><summary>wp-admin-ui-development</summary><p>Settings pages, admin menus, notices, screen targeting, and capability-aware admin flows.</p></details>
+          <details><summary>wp-migration-upgrade-review</summary><p>Versioned upgrades, schema changes, backfills, batching, and rollout risk.</p></details>
+          <details><summary>wp-accessibility-review</summary><p>Semantic HTML, keyboard access, focus management, labels, ARIA, and interactive accessibility.</p></details>
+          <details><summary>wp-test-strategy</summary><p>Unit, integration, and E2E strategy, existing coverage discovery, and regression prioritization.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-muted">
+      <div class="shell repo-grid">
+        <div>
+          <p class="eyebrow">Repository Layout</p>
+          <h2>Parallel wrappers, shared references, one source of domain truth.</h2>
+          <pre class="repo-tree"><code>claude-skills/   # Claude-oriented skill pack with shared reference docs
+codex-skills/    # Codex-oriented skill wrappers for the same eleven domains
+commands/        # Claude slash commands
+public/          # README assets
+docs/            # GitHub Pages site</code></pre>
+        </div>
+        <div class="repo-links">
+          <a href="https://github.com/jorgerosal/wordpress-skills/blob/main/README.md" target="_blank" rel="noreferrer">README</a>
+          <a href="https://github.com/jorgerosal/wordpress-skills/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">Contributing</a>
+          <a href="https://github.com/jorgerosal/wordpress-skills/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer">Changelog</a>
+          <a href="https://github.com/jorgerosal/wordpress-skills" target="_blank" rel="noreferrer">Repository</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>
+        Practical WordPress engineering patterns for Claude Code and Codex. Not affiliated
+        with or endorsed by WordPress, WooCommerce, Claude, or Codex.
+      </p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
