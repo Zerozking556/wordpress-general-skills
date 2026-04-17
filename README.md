@@ -39,6 +39,14 @@ The Codex skills reuse the domain references stored under `claude-skills/` so th
 
 The project also includes a deployable GitHub Pages site in `docs/`.
 
+## Validation
+
+Run the repository validator before opening a PR or after adding skills, commands, or docs:
+
+```bash
+python3 scripts/validate_repo.py
+```
+
 ## Available Skills
 
 | Skill | Focus | Status |
@@ -66,12 +74,6 @@ Choose the install path for the agent you want to use.
 - **Use Option 1** if you want the skills available inside one project for yourself or your team
 - **Use Option 2** if you want the skills available across your machine
 - **Use Option 3** if you only want one Claude skill and are fine updating it manually
-
-#### Installation Demo
-
-[![Installation Demo](public/install-demo-poster.svg)](public/glorious-install-demo.html)
-
-The interactive demo source lives in [public/glorious-install-demo.html](public/glorious-install-demo.html). Open that file locally in a browser to view the animation. It follows the `glorious-demo` setup pattern using the library CSS, JS, `GDemo` constructor, and chained `openApp`, `write`, `command`, and `respond` calls.
 
 #### Option 1: Add to Your Project (Recommended)
 
