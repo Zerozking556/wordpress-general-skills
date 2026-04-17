@@ -76,7 +76,7 @@ That usually keeps the pack focused and avoids overlap.
    cp -r claude-skills/your-skill ~/.claude/skills/
    ```
 
-4. For Codex wrappers, copy the relevant folder into `~/.codex/skills/` or `$CODEX_HOME/skills/`.
+4. For Codex wrappers, copy the relevant folder into `~/.codex/skills/` or `$CODEX_HOME/skills/`, and copy the matching shared references under `claude-skills/` into `~/.codex/claude-skills/` or `$CODEX_HOME/claude-skills/`.
 
 5. Restart Claude Code or reload Codex if needed so the updated skill is available.
 
@@ -112,6 +112,16 @@ commands/
   wp-theme.md
   wp-woo-review.md
   wp-woo.md
+  wp-rest-review.md
+  wp-rest.md
+  wp-admin-review.md
+  wp-admin.md
+  wp-migration-review.md
+  wp-migration.md
+  wp-a11y-review.md
+  wp-a11y.md
+  wp-test-review.md
+  wp-test.md
 ```
 
 ## Skill Authoring Guidelines

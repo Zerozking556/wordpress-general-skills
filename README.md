@@ -9,12 +9,12 @@
     <img src="https://img.shields.io/badge/Claude%20Code-Ready-1f6feb?style=for-the-badge" alt="Claude Code Ready" />
   </a>
   <img src="https://img.shields.io/badge/Codex-Parallel%20skills-0a7ea4?style=for-the-badge" alt="Codex parallel skills" />
-  <img src="https://img.shields.io/badge/WordPress-6%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
-  <img src="https://img.shields.io/badge/Commands-12%20slash%20commands-2da44e?style=for-the-badge" alt="12 slash commands" />
+  <img src="https://img.shields.io/badge/WordPress-11%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
+  <img src="https://img.shields.io/badge/Commands-22%20slash%20commands-2da44e?style=for-the-badge" alt="22 slash commands" />
   <img src="https://img.shields.io/badge/Focus-Code%20review%20and%20triage-8250df?style=for-the-badge" alt="Code review and triage" />
 </p>
 
-Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, blocks, themes, and WooCommerce.
+Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, and testing.
 
 ## Why This Pack
 
@@ -29,7 +29,7 @@ Professional WordPress skills for [Claude Code](https://claude.ai/code) and Code
 
 ```text
 claude-skills/   # Claude-oriented skill pack with shared reference docs
-codex-skills/    # Codex-oriented skill wrappers for the same six domains
+codex-skills/    # Codex-oriented skill wrappers for the same eleven domains
 commands/        # Claude slash commands
 public/          # README assets
 ```
@@ -46,6 +46,11 @@ The Codex skills reuse the domain references stored under `claude-skills/` so th
 | **wp-block-development** | `block.json`, React/JSX editor patterns, render callbacks, Interactivity API | ✅ |
 | **wp-theme-development** | `theme.json`, templates, template parts, style variations, FSE patterns | ✅ |
 | **wp-woocommerce-dev** | HPOS, CRUD APIs, payment gateway patterns, cart fragments, template overrides | ✅ |
+| **wp-rest-api-development** | Custom REST routes, permission callbacks, schema design, request validation, response shape | ✅ |
+| **wp-admin-ui-development** | Settings pages, admin menus, notices, screen targeting, admin form flows | ✅ |
+| **wp-migration-upgrade-review** | Versioned upgrades, `dbDelta()`, backfills, rollout safety, schema changes | ✅ |
+| **wp-accessibility-review** | Semantic markup, keyboard access, focus behavior, labels, ARIA, accessible interactions | ✅ |
+| **wp-test-strategy** | Unit vs integration vs E2E coverage, test planning, regression risk, WordPress test gaps | ✅ |
 
 ## Installation
 
@@ -124,6 +129,7 @@ Install the parallel Codex wrappers if you want the same WordPress domains avail
 ```bash
 mkdir -p ~/.codex/skills
 cp -r codex-skills/* ~/.codex/skills/
+cp -r claude-skills ~/.codex/claude-skills
 ```
 
 #### Option 2: Install One Codex Skill
@@ -131,9 +137,11 @@ cp -r codex-skills/* ~/.codex/skills/
 ```bash
 mkdir -p ~/.codex/skills
 cp -r codex-skills/wp-performance-review ~/.codex/skills/
+mkdir -p ~/.codex/claude-skills/wp-performance-review
+cp -r claude-skills/wp-performance-review/references ~/.codex/claude-skills/wp-performance-review/
 ```
 
-If your Codex setup uses a custom `CODEX_HOME`, copy the folders into `$CODEX_HOME/skills/` instead.
+If your Codex setup uses a custom `CODEX_HOME`, copy the wrappers into `$CODEX_HOME/skills/` and the shared reference tree into `$CODEX_HOME/claude-skills/`.
 
 #### Verify the Codex Install
 
@@ -161,6 +169,16 @@ Claude skills include a full review command and a faster triage command.
 | `/wp-theme [path]` | Fast theme structure and FSE scan |
 | `/wp-woo-review [path]` | Full WooCommerce extension review |
 | `/wp-woo [path]` | Fast WooCommerce compatibility and risk scan |
+| `/wp-rest-review [path]` | Full REST API review for routes, auth, validation, and response design |
+| `/wp-rest [path]` | Fast REST API scan for route and permission issues |
+| `/wp-admin-review [path]` | Full admin UI review for settings screens, menus, notices, and admin UX |
+| `/wp-admin [path]` | Fast admin UI scan for menus, settings flow, and admin asset loading |
+| `/wp-migration-review [path]` | Full migration and upgrade review for versioned updates, schema changes, and backfills |
+| `/wp-migration [path]` | Fast migration scan for risky upgrade patterns |
+| `/wp-a11y-review [path]` | Full accessibility review for themes, blocks, plugins, and admin interfaces |
+| `/wp-a11y [path]` | Fast accessibility scan for semantic, keyboard, focus, and ARIA issues |
+| `/wp-test-review [path]` | Full test strategy review with prioritized unit, integration, and E2E recommendations |
+| `/wp-test [path]` | Fast testing scan for existing coverage and likely test gaps |
 
 ### Quick Examples
 
@@ -179,6 +197,12 @@ Claude skills include a full review command and a faster triage command.
 
 # Check a WooCommerce extension before release
 /wp-woo-review wp-content/plugins/my-woo-extension
+
+# Review custom REST API endpoints
+/wp-rest-review wp-content/plugins/my-api-plugin
+
+# Plan tests for a risky plugin change
+/wp-test-review wp-content/plugins/my-plugin
 ```
 
 When installed from the marketplace, commands are namespaced:
@@ -199,6 +223,11 @@ Help me debug this block.json setup
 Check this WooCommerce extension for HPOS issues
 Review this theme before launch
 Find slow queries in this plugin
+Review these custom REST routes
+Check this plugin settings page
+Audit this release migration before deploy
+Review this theme for accessibility issues
+What tests should I add for this change?
 ```
 
 Claude or Codex will match the request to the most relevant skill and follow that review workflow.
@@ -213,10 +242,15 @@ Claude or Codex will match the request to the most relevant skill and follow tha
 | `wp-block-development` | "block review", "Gutenberg", "block.json", "InnerBlocks", "Interactivity API", "dynamic block" |
 | `wp-theme-development` | "theme review", "block theme", "theme.json", "FSE", "template parts", "style variations" |
 | `wp-woocommerce-dev` | "WooCommerce review", "HPOS", "payment gateway", "cart fragments", "Action Scheduler" |
+| `wp-rest-api-development` | "REST API review", "register_rest_route", "permission_callback", "REST endpoint", "API schema" |
+| `wp-admin-ui-development` | "admin UI", "settings page", "admin screen", "admin menu", "admin notice" |
+| `wp-migration-upgrade-review` | "migration review", "upgrade routine", "dbDelta", "schema change", "backfill" |
+| `wp-accessibility-review` | "accessibility review", "a11y", "keyboard navigation", "focus management", "semantic HTML" |
+| `wp-test-strategy` | "test strategy", "PHPUnit", "integration tests", "Playwright", "coverage" |
 
 ## What Each Skill Covers
 
-All six skills produce structured findings with severity labels (`Critical`, `Warning`, `Info`), file references, and concrete recommendations.
+All eleven skills produce structured findings with severity labels (`Critical`, `Warning`, `Info`), file references, and concrete recommendations.
 
 ### `wp-performance-review`
 
@@ -271,6 +305,46 @@ All six skills produce structured findings with severity labels (`Critical`, `Wa
 - Cart fragments and performance concerns
 - Action Scheduler usage
 - Template override quality and hook preservation
+
+### `wp-rest-api-development`
+
+- Route registration and namespace design
+- `permission_callback` quality
+- Request arg validation and sanitization
+- Response shape and status codes
+- Controller patterns and versioning
+
+### `wp-admin-ui-development`
+
+- Settings pages and admin menus
+- Capability-aware screen access
+- Admin notices and save feedback
+- Screen-specific asset loading
+- Settings API and admin UX structure
+
+### `wp-migration-upgrade-review`
+
+- Versioned upgrade routines
+- Schema changes and `dbDelta()`
+- Data backfills and batching
+- Upgrade safety and idempotency
+- Rollout and rollback risk
+
+### `wp-accessibility-review`
+
+- Semantic HTML and structure
+- Keyboard interaction support
+- Focus management
+- Form labels and error messaging
+- Accessible interactive patterns in themes, blocks, and admin UI
+
+### `wp-test-strategy`
+
+- Unit vs integration vs E2E test selection
+- Risk-based coverage planning
+- Existing test discovery and gap analysis
+- Regression planning for WordPress features
+- Coverage guidance for REST, blocks, admin UI, themes, and WooCommerce
 
 ## Requirements
 

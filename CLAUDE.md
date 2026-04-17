@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository contains a parallel WordPress skill pack for Claude Code and Codex covering six domains:
+This repository contains a parallel WordPress skill pack for Claude Code and Codex covering eleven domains:
 
 - Performance reviews
 - Security reviews
@@ -12,6 +12,11 @@ This repository contains a parallel WordPress skill pack for Claude Code and Cod
 - Block development reviews
 - Theme development reviews
 - WooCommerce development reviews
+- REST API reviews
+- Admin UI reviews
+- Migration and upgrade reviews
+- Accessibility reviews
+- Test strategy reviews
 
 The Claude and Codex wrappers are designed for WordPress 6.x+ codebases and provide structured review workflows, shared reference docs, quick triage commands for Claude, and cross-skill handoffs when a finding belongs in another specialty.
 
@@ -37,6 +42,21 @@ claude-skills/                 # Claude skill definitions and shared references
   wp-woocommerce-dev/
     SKILL.md
     references/
+  wp-rest-api-development/
+    SKILL.md
+    references/
+  wp-admin-ui-development/
+    SKILL.md
+    references/
+  wp-migration-upgrade-review/
+    SKILL.md
+    references/
+  wp-accessibility-review/
+    SKILL.md
+    references/
+  wp-test-strategy/
+    SKILL.md
+    references/
 
 codex-skills/                  # Codex-oriented wrappers for the same domains
   wp-performance-review/
@@ -50,6 +70,16 @@ codex-skills/                  # Codex-oriented wrappers for the same domains
   wp-theme-development/
     SKILL.md
   wp-woocommerce-dev/
+    SKILL.md
+  wp-rest-api-development/
+    SKILL.md
+  wp-admin-ui-development/
+    SKILL.md
+  wp-migration-upgrade-review/
+    SKILL.md
+  wp-accessibility-review/
+    SKILL.md
+  wp-test-strategy/
     SKILL.md
 
 commands/                      # Slash command definitions
@@ -65,6 +95,16 @@ commands/                      # Slash command definitions
   wp-theme.md                  # Quick theme development scan
   wp-woo-review.md             # Full WooCommerce development review command
   wp-woo.md                    # Quick WooCommerce scan
+  wp-rest-review.md            # Full REST API review command
+  wp-rest.md                   # Quick REST API scan
+  wp-admin-review.md           # Full admin UI review command
+  wp-admin.md                  # Quick admin UI scan
+  wp-migration-review.md       # Full migration and upgrade review command
+  wp-migration.md              # Quick migration scan
+  wp-a11y-review.md            # Full accessibility review command
+  wp-a11y.md                   # Quick accessibility scan
+  wp-test-review.md            # Full test strategy review command
+  wp-test.md                   # Quick testing strategy scan
 
 README.md                      # Public documentation and installation guidance
 CHANGELOG.md                   # Release history
@@ -125,6 +165,8 @@ cp -r claude-skills/wp-your-skill ~/.claude/skills/
 
 # If you test the Codex wrapper locally
 cp -r codex-skills/wp-your-skill ~/.codex/skills/
+mkdir -p ~/.codex/claude-skills/wp-your-skill
+cp -r claude-skills/wp-your-skill/references ~/.codex/claude-skills/wp-your-skill/
 ```
 
 ## Versioning

@@ -2,11 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.1] - 2026-04-17
+## [2.1.0] - 2026-04-17
+
+### Added
+
+- **wp-rest-api-development** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-rest-review`, `/wp-rest`)
+- **wp-admin-ui-development** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-admin-review`, `/wp-admin`)
+- **wp-migration-upgrade-review** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-migration-review`, `/wp-migration`)
+- **wp-accessibility-review** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-a11y-review`, `/wp-a11y`)
+- **wp-test-strategy** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-test-review`, `/wp-test`)
 
 ### Changed
 
-- Refreshed `CLAUDE.md` so maintainer guidance matches the current six-skill repository layout instead of the older performance-only structure
+- Expanded the repository from 6 to 11 WordPress skill domains and from 12 to 22 Claude slash commands
+- Refreshed `CLAUDE.md` so maintainer guidance matches the expanded repository layout instead of the older performance-only structure
 - Normalized cross-skill references to the actual skill names (`wp-block-development` and `wp-woocommerce-dev`)
 - Reworked fragile quick-scan shell snippets to use recursive `rg`-based searches and clearer manual follow-up notes where command-only detection is unreliable
 - Standardized global severity guidance in `CLAUDE.md` so `CRITICAL`, `WARNING`, and `INFO` work consistently across performance, security, plugin, block, theme, and WooCommerce reviews
@@ -15,8 +24,24 @@ All notable changes to this project will be documented in this file.
 - Refreshed `CONTRIBUTING.md` to match the README tone, clarify contribution paths, and align skill authoring guidance with current repository conventions
 - Updated repository and package references in docs so install, clone, submodule, and namespaced command examples consistently point to `jorgerosal/wordpress-skills`
 - Renamed the Claude skill tree from `skills/` to `claude-skills/` to make the agent-specific structure explicit
-- Added a parallel `codex-skills/` pack with Codex-native wrappers for all six WordPress review domains
+- Added a parallel `codex-skills/` pack with Codex-native wrappers for all eleven WordPress review domains
 - Updated docs to explain the dual Claude and Codex layout and the new installation paths for both agents
+
+## [2.0.1] - 2026-04-17
+
+### Changed
+
+- Refreshed `CLAUDE.md` so maintainer guidance matches the six-skill repository layout after the initial documentation and structure cleanup
+- Normalized cross-skill references to the actual skill names (`wp-block-development` and `wp-woocommerce-dev`)
+- Reworked fragile quick-scan shell snippets to use recursive `rg`-based searches and clearer manual follow-up notes where command-only detection is unreliable
+- Standardized global severity guidance in `CLAUDE.md` so `CRITICAL`, `WARNING`, and `INFO` work consistently across performance, security, plugin, block, theme, and WooCommerce reviews
+- Restyled `README.md` with stronger GitHub presentation, clearer section hierarchy, tighter copy, and improved command and skill summaries
+- Simplified installation guidance in `README.md` to emphasize project install, user-account install, and manual single-skill setup with update and verification steps
+- Refreshed `CONTRIBUTING.md` to match the README tone, clarify contribution paths, and align skill authoring guidance with current repository conventions
+- Updated repository and package references in docs so install, clone, submodule, and namespaced command examples consistently point to `jorgerosal/wordpress-skills`
+- Renamed the Claude skill tree from `skills/` to `claude-skills/` to make the agent-specific structure explicit
+- Added a parallel `codex-skills/` pack with Codex-native wrappers for the original six WordPress review domains
+- Updated docs to explain the dual Claude and Codex layout and the installation paths for both agents
 
 ## [2.0.0] - 2026-02-06
 
