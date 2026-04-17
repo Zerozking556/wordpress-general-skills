@@ -20,7 +20,7 @@ Systematic performance code review for WordPress themes, plugins, and custom cod
 
 **Don't use for:**
 - Security-only audits (use wp-security-review when available)
-- Gutenberg block development patterns (use wp-gutenberg-blocks when available)
+- Gutenberg block development patterns (use wp-block-development when available)
 - General PHP code review not specific to WordPress
 
 ## Code Review Workflow
@@ -99,41 +99,41 @@ Scan for:
 
 ```bash
 # Critical issues - scan these first
-grep -rn "posts_per_page.*-1\|numberposts.*-1" .
-grep -rn "query_posts\s*(" .
-grep -rn "session_start\s*(" .
-grep -rn "setInterval.*fetch\|setInterval.*ajax\|setInterval.*\\\$\." .
+rg -n "posts_per_page\s*.*-1|numberposts\s*.*-1" .
+rg -n "query_posts\s*\(" .
+rg -n "session_start\s*\(" .
+rg -n "setInterval.*(fetch|ajax|\\$\\.)" .
 
 # Database writes on frontend
-grep -rn "update_option\|add_option" . | grep -v "admin\|activate\|install"
+rg -n "update_option|add_option" . -g '*.php'
 
 # Uncached expensive functions
-grep -rn "url_to_postid\|attachment_url_to_postid\|count_user_posts" .
+rg -n "url_to_postid|attachment_url_to_postid|count_user_posts" .
 
 # External HTTP without caching
-grep -rn "wp_remote_get\|wp_remote_post\|file_get_contents.*http" .
+rg -n "wp_remote_get|wp_remote_post|file_get_contents\s*\(\s*['\"]https?://" .
 
 # Cache bypass risks
-grep -rn "setcookie\|session_start" .
+rg -n "setcookie|session_start" .
 
 # PHP code anti-patterns
-grep -rn "in_array\s*(" . | grep -v "true\s*)" # Missing strict comparison
-grep -rn "<<<" .  # Heredoc/nowdoc syntax
-grep -rn "cache_results.*false" .
+rg -n "in_array\s*\(" . -g '*.php'    # Manually verify strict comparison
+rg -n "<<<" .
+rg -n "cache_results\s*=>\s*false|cache_results\s*,\s*false" .
 
 # JavaScript bundle issues
-grep -rn "import.*from.*lodash['\"]" .  # Full lodash import
-grep -rn "registerBlockStyle" .  # Many block styles = performance issue
+rg -n "import\s+_\s+from\s+['\"]lodash['\"]" . -g '*.{js,jsx,ts,tsx}'
+rg -n "registerBlockStyle" .
 
 # Asset loading issues
-grep -rn "wp_enqueue_script\|wp_enqueue_style" . | grep -v "is_page\|is_singular\|is_admin"
+rg -n "wp_enqueue_script|wp_enqueue_style" . -g '*.php'
 
 # Transient misuse
-grep -rn "set_transient.*\\\$" .  # Dynamic transient keys
-grep -rn "set_transient" . | grep -v "get_transient"  # Set without checking first
+rg -n "set_transient\s*\([^,]+\\$" . -g '*.php'
+rg -n "set_transient" . -g '*.php'    # Manually confirm a preceding get_transient() check
 
 # WP-Cron issues
-grep -rn "wp_schedule_event" . | grep -v "wp_next_scheduled"  # Missing schedule check
+rg -n "wp_schedule_event" . -g '*.php'  # Manually confirm wp_next_scheduled() guard
 ```
 
 ## Platform Context

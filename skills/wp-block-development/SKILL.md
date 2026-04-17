@@ -29,7 +29,7 @@ Systematic block development review for WordPress 6.x+ block editor (Gutenberg).
 **Don't use for:**
 - theme.json configuration (use wp-theme-development when available)
 - General React application review (this is block-editor-specific)
-- WooCommerce block extensions (use wp-woocommerce-development when available)
+- WooCommerce block extensions (use wp-woocommerce-dev when available)
 - Security-only audits (use wp-security-review for comprehensive security analysis)
 - Plugin architecture audits (use wp-plugin-development for plugin structure)
 - Performance-only audits (use wp-performance-review)
@@ -317,60 +317,62 @@ Report using output format below. If security concerns found (unescaped render o
 
 ## Search Patterns for Quick Detection (BLK-22)
 
-Use these grep commands for quick block scanning. Organized by severity. Cover BOTH PHP and JS/JSX files.
+Use these `rg` commands for quick block scanning. Organized by severity. Cover BOTH PHP and JS/JSX files.
 
 ### CRITICAL Patterns
 
 ```bash
-# block.json without apiVersion or apiVersion < 3
-grep -r "block.json" --include="*.json" . | xargs grep -L "\"apiVersion\": 3"
+# block.json without apiVersion 3
+rg -l --iglob 'block.json' . | xargs -I{} sh -c "rg -q '\"apiVersion\"\\s*:\\s*3' '{}' || echo '{}'"
 
 # JS/JSX files with window.wp.* instead of @wordpress/* imports
-grep -rn "window\.wp\." --include="*.js" --include="*.jsx" .
+rg -n "window\.wp\." . -g '*.{js,jsx}'
 
-# save function without useBlockProps.save() in JSX files
-grep -rn "function save" --include="*.js" --include="*.jsx" . | xargs grep -L "useBlockProps\.save()"
+# save function without useBlockProps.save() in JSX files (manual candidate list)
+rg -n "function save|const save\s*=|save:\s*\(" . -g '*.{js,jsx}'
 
 # render callback using wp_kses_post on $content parameter (breaks embeds)
-grep -rn "wp_kses_post.*\$content" --include="*.php" .
+rg -n "wp_kses_post\s*\(\s*\$content\s*\)" . -g '*.php'
 
 # Dynamic block with InnerBlocks but save returns null
-# (Manual check: If edit.js has InnerBlocks, save.js should have InnerBlocks.Content)
+# Manual check: if edit.js uses InnerBlocks, save.js should include InnerBlocks.Content.
+rg -n "InnerBlocks" . -g '*.{js,jsx}'
+rg -n "return\s+null" . -g '*.{js,jsx}'
 
 # Attribute with source: 'meta' (deprecated)
-grep -rn "\"source\".*:.*\"meta\"" --include="block.json" .
+rg -n "\"source\"\s*:\s*\"meta\"" . -g 'block.json'
 
-# Missing register_block_type() call in plugin files
-grep -L "register_block_type" --include="*.php" . | grep -E "plugin\.php|functions\.php"
+# Missing register_block_type() call in plugin bootstrap files
+rg -n "register_block_type\s*\(" . -g '*.php'
 ```
 
 ### WARNING Patterns
 
 ```bash
 # block.json missing supports field
-grep -L "\"supports\"" --include="block.json" .
+rg -l --iglob 'block.json' . | xargs -I{} sh -c "rg -q '\"supports\"' '{}' || echo '{}'"
 
-# edit function without useBlockProps() in JS/JSX files
-grep -rn "function Edit\|export default function Edit" --include="*.js" --include="*.jsx" . | xargs grep -L "useBlockProps()"
+# edit function without useBlockProps() in JS/JSX files (manual candidate list)
+rg -n "function Edit|export default function Edit|const Edit\s*=" . -g '*.{js,jsx}'
 
 # Hardcoded strings not wrapped in __() in JS/JSX files
-grep -rn "title.*:.*['\"][A-Z]" --include="*.js" --include="*.jsx" . | grep -v "__("
+rg -n "title\s*:\s*['\"][A-Z]" . -g '*.{js,jsx}'
 
 # render.php without get_block_wrapper_attributes()
-grep -L "get_block_wrapper_attributes" --include="render.php" .
+rg -l --iglob 'render.php' . | xargs -I{} sh -c "rg -q 'get_block_wrapper_attributes' '{}' || echo '{}'"
 
 # PHP render files without defined( 'ABSPATH' ) check
-grep -L "defined.*ABSPATH" --include="render.php" .
+rg -l --iglob 'render.php' . | xargs -I{} sh -c "rg -q 'defined.*ABSPATH' '{}' || echo '{}'"
 
 # save function with side effects (Math.random, Date.now)
-grep -rn "Math\.random\|Date\.now\|new Date()" --include="save.js" .
+rg -n "Math\.random|Date\.now|new Date\(" . -g 'save.js'
 
 # Missing block.json $schema field
-grep -L "\"\$schema\"" --include="block.json" .
+rg -l --iglob 'block.json' . | xargs -I{} sh -c "rg -q '\"\\$schema\"' '{}' || echo '{}'"
 
 # useSelect with multiple separate calls (performance anti-pattern)
-# (Manual check: Count useSelect calls in single component)
-grep -rn "useSelect(" --include="*.js" --include="*.jsx" . | wc -l
+# Manual check: inspect files with repeated useSelect() calls.
+rg -n "useSelect\s*\(" . -g '*.{js,jsx}'
 ```
 
 ### INFO Patterns

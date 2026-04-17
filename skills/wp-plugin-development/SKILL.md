@@ -25,7 +25,7 @@ Systematic plugin architecture review for WordPress plugins targeting WordPress 
 **Don't use for:**
 - Theme development (use wp-theme-development when available)
 - Gutenberg block development (use wp-block-development when available)
-- WooCommerce extension development (use wp-woocommerce-development when available)
+- WooCommerce extension development (use wp-woocommerce-dev when available)
 - Security-only audits (use wp-security-review for comprehensive security analysis)
 - Performance-only audits (use wp-performance-review)
 
@@ -273,77 +273,76 @@ Follow this six-step workflow for systematic plugin reviews:
 
 ## Search Patterns for Quick Detection (PLG-21)
 
-Use these grep commands for quick plugin scanning. Organized by severity.
+Use these `rg` commands for quick plugin scanning. Organized by severity.
 
 ### CRITICAL Patterns
 
 ```bash
-# Plugin file without "Plugin Name" header (won't be recognized by WordPress)
-grep -L "Plugin Name:" *.php
+# Main plugin file should contain "Plugin Name" header
+# If this returns nothing, the plugin likely lacks a valid main header.
+rg -n "Plugin Name:" . -g '*.php'
 
 # PHP files missing ABSPATH check (direct file access possible)
-grep -L "defined.*ABSPATH" *.php
+rg -L --iglob '*.php' "defined\s*\(\s*['\"]ABSPATH['\"]\s*\)|defined\s*\(\s*'ABSPATH'\s*\)" .
 
 # Unprefixed function declarations in global scope (namespace collision risk)
-grep -n "^function [a-z_]\+(" *.php
+rg -n "^function\s+[a-z_][a-z0-9_]*\s*\(" . -g '*.php'
 
 # Text domain mismatch (compare header vs i18n calls)
-# First: Extract text domain from header
-grep "Text Domain:" my-plugin.php
-# Then: Find all i18n function calls and check domain parameter
-grep -n "__\|_e\|_n\|_x" *.php | grep -v "text-domain-here"
+# First: inspect the main plugin file header for the expected text domain
+rg -n "Text Domain:" . -g '*.php'
+# Then: compare that slug with translation calls across the plugin
+rg -n "__\(|_e\(|_n\(|_x\(" . -g '*.php'
 
 # flush_rewrite_rules outside activation/deactivation (expensive operation on every page load)
-grep -n "flush_rewrite_rules" *.php | grep -v "register_activation_hook\|register_deactivation_hook"
+rg -n "flush_rewrite_rules" . -g '*.php'
 
-# Filter callbacks missing return statement (fatal error)
-grep -n "add_filter" *.php
-# Then manually check each callback for return statement
+# Filter callbacks missing return statement (manual follow-up required)
+rg -n "add_filter\s*\(" . -g '*.php'
 
-# register_rest_route without permission_callback (WordPress 5.5+ error)
-grep -n "register_rest_route" *.php | xargs grep -L "permission_callback"
+# register_rest_route without permission_callback (manual per-route review)
+rg -n "register_rest_route\s*\(" . -g '*.php'
 ```
 
 ### WARNING Patterns
 
 ```bash
 # Missing register_activation_hook (no setup mechanism)
-grep -L "register_activation_hook" *.php
+rg -n "register_activation_hook\s*\(" . -g '*.php'
 
 # Missing uninstall cleanup (no uninstall.php and no register_uninstall_hook)
-if [ ! -f uninstall.php ]; then grep -L "register_uninstall_hook" *.php; fi
+test -f uninstall.php || rg -n "register_uninstall_hook\s*\(" . -g '*.php'
 
-# i18n functions without text domain parameter
-grep -n "__\|_e" *.php | grep -v ", '[a-z-]\+' )"
+# i18n functions without obvious text domain parameter (manual confirmation required)
+rg -n "__\(|_e\(" . -g '*.php'
 
 # Hardcoded /wp-content/plugins/ paths (breaks on custom WordPress installations)
-grep -n "/wp-content/plugins/" *.php
+rg -n "/wp-content/plugins/" . -g '*.php'
 
 # Direct CREATE TABLE with $wpdb->query (should use dbDelta)
-grep -n "wpdb->query.*CREATE TABLE" *.php
+rg -n "wpdb->query\s*\(.*CREATE TABLE" . -g '*.php'
 
 # Post type key length check (max 20 characters)
-grep -n "register_post_type" *.php
-# Then manually verify key length
+rg -n "register_post_type\s*\(" . -g '*.php'
 
-# Missing show_in_rest in register_post_type (not Gutenberg-compatible)
-grep -n "register_post_type" *.php | xargs grep -L "show_in_rest"
+# Missing show_in_rest in register_post_type (manual per-registration review)
+rg -n "register_post_type\s*\(" . -g '*.php'
 ```
 
 ### INFO Patterns
 
 ```bash
 # Missing "Requires at least" or "Requires PHP" in plugin header
-grep -L "Requires at least\|Requires PHP" *.php
+rg -n "Requires at least:|Requires PHP:" . -g '*.php'
 
 # Functions not using PHP namespaces (could modernize)
-grep -n "^function myprefix_" *.php
+rg -n "^function\s+myprefix_" . -g '*.php'
 
-# Admin code loading on frontend (missing is_admin check)
-grep -n "add_action.*admin_" *.php | grep -v "is_admin"
+# Admin code loading on frontend (manual context check)
+rg -n "add_action\s*\(\s*['\"]admin_" . -g '*.php'
 
 # Missing Domain Path in plugin header
-grep -L "Domain Path:" *.php
+rg -n "Domain Path:" . -g '*.php'
 ```
 
 ## Platform Context (PLG-12)

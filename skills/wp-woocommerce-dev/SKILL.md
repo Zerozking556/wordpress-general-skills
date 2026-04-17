@@ -781,50 +781,52 @@ add_filter( 'wc_session_expiration', function() {
 
 ## Search Patterns for Quick Detection (WOO-22)
 
-Use these grep commands for quick WooCommerce scanning. Organized by severity.
+Use these `rg` commands and shell checks for quick WooCommerce scanning. Organized by severity.
 
 ### CRITICAL Patterns
 
 ```bash
-# Missing HPOS declaration
-grep -L "declare_compatibility" --include="*.php" . | grep -E "\.php$" | xargs grep -l "WooCommerce"
+# HPOS declaration candidates
+# If this returns nothing in a WooCommerce extension, the plugin likely lacks HPOS declaration.
+rg -n "declare_compatibility\s*\(\s*['\"]custom_order_tables['\"]" . -g '*.php'
 
 # get_posts/WP_Query with shop_order
-grep -rn "post_type.*shop_order\|shop_order.*post_type" --include="*.php" .
+rg -n "post_type.*shop_order|shop_order.*post_type" . -g '*.php'
 
 # Direct $wpdb queries against wp_posts for orders
-grep -rn "\$wpdb.*wp_posts.*shop_order" --include="*.php" .
+rg -n "\$wpdb.*wp_posts.*shop_order" . -g '*.php'
 
 # Raw card data storage/logging
-grep -rn "card_number\|card_cvv\|cvv.*meta\|card.*error_log" --include="*.php" .
+rg -n "card_number|card_cvv|cvv.*meta|card.*error_log" . -g '*.php'
 
 # Template overrides without do_action() calls
-find . -path "*/woocommerce/*.php" -exec grep -L "do_action" {} \;
+find . -path "*/woocommerce/*.php" -exec rg -L "do_action|apply_filters" {} \;
 
-# Missing webhook signature verification
-grep -rn "X-WC-Webhook-Signature" --include="*.php" . | grep -v "hash_hmac\|verify"
+# Webhook signature handling candidates (manually confirm verification logic)
+rg -n "X-WC-Webhook-Signature|hash_hmac|verify" . -g '*.php'
 ```
 
 ### WARNING Patterns
 
 ```bash
-# WP_Query with post_type=product
-grep -rn "post_type.*product\|product.*post_type" --include="*.php" . | grep "WP_Query\|get_posts"
+# WP_Query with post_type=product (compare these result sets manually)
+rg -n "WP_Query|get_posts" . -g '*.php'
+rg -n "post_type.*product|product.*post_type" . -g '*.php'
 
-# Site-wide cart-fragments loading without conditional dequeue
-grep -rn "wc-cart-fragments" --include="*.php" . | grep -v "woocommerce_get_script_data\|is_woocommerce\|is_cart"
+# Site-wide cart-fragments loading without conditional dequeue (manual context check)
+rg -n "wc-cart-fragments|woocommerce_get_script_data|is_woocommerce|is_cart" . -g '*.php'
 
-# wp_cron for bulk WC operations
-grep -rn "wp_schedule_event\|wp_cron" --include="*.php" . | grep -E "order|product|wc_"
+# wp_cron for bulk WC operations (manual context check)
+rg -n "wp_schedule_event|wp_cron|wc_|order|product" . -g '*.php'
 
 # Hardcoded API credentials
-grep -rn "api_key.*=.*['\"][a-zA-Z0-9]{20,}" --include="*.php" .
+rg -n "api_key.*=.*['\"][A-Za-z0-9]{20,}" . -g '*.php'
 
 # get_post_meta/update_post_meta for order fields
-grep -rn "get_post_meta.*order_id\|update_post_meta.*order_id" --include="*.php" .
+rg -n "get_post_meta.*order_id|update_post_meta.*order_id" . -g '*.php'
 
-# Session filters exceeding 30-day cap
-grep -rn "wc_session_expiration\|wc_session_expiring" --include="*.php" . | grep -E "[4-9][0-9].*DAY\|[3-9][0-9][0-9].*DAY"
+# Session filters exceeding 30-day cap (manual follow-up on returned values)
+rg -n "wc_session_expiration|wc_session_expiring" . -g '*.php'
 ```
 
 ### INFO Patterns
@@ -834,13 +836,13 @@ grep -rn "wc_session_expiration\|wc_session_expiring" --include="*.php" . | grep
 find . -path "*/woocommerce/*.php" -type f
 
 # Missing object caching for repeated product loads
-grep -rn "wc_get_product" --include="*.php" . | grep -v "wp_cache"
+rg -n "wc_get_product" . -g '*.php'
 
 # Action Scheduler candidates
-grep -rn "foreach.*wc_get_orders\|foreach.*wc_get_products" --include="*.php" .
+rg -n "foreach.*wc_get_orders|foreach.*wc_get_products" . -g '*.php'
 
 # WC Blocks integration opportunities
-grep -L "woocommerce_register_additional_checkout_field\|Store API" --include="*.php" .
+rg -n "woocommerce_register_additional_checkout_field|Store API" . -g '*.php'
 ```
 
 **Note:** WC-specific patterns need different context than generic WP. `get_posts()` for non-order post types is valid. `WP_Query` for standard posts/pages is valid. Only flag when combined with WC-specific post types.

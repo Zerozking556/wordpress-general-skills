@@ -32,7 +32,7 @@ Systematic theme development review for WordPress 6.6+ with primary focus on blo
 - Plugin architecture audits (use wp-plugin-development for plugin structure)
 - Security-only audits (use wp-security-review for comprehensive security)
 - Performance-only audits (use wp-performance-review for performance analysis)
-- WooCommerce theme integration (use wp-woocommerce-development when available)
+- WooCommerce theme integration (use wp-woocommerce-dev when available)
 - Visual design assessment (this is code review only, not UI/UX review)
 
 ## Code Review Workflow
@@ -288,7 +288,7 @@ Follow this seven-step workflow for systematic theme reviews:
 
 ## Search Patterns for Quick Detection (THM-21)
 
-Use these grep commands for quick theme scanning. Organized by severity. Cover PHP, HTML template, and JSON files.
+Use these `rg` commands and shell checks for quick theme scanning. Organized by severity. Cover PHP, HTML template, and JSON files.
 
 ### CRITICAL Patterns
 
@@ -301,63 +301,67 @@ Use these grep commands for quick theme scanning. Organized by severity. Cover P
 [ ! -f index.php ] && [ ! -d templates ] && echo "CRITICAL: Classic theme missing index.php"
 
 # theme.json with invalid or missing version
-grep -L "\"version\"" theme.json
-grep "\"version\": 1" theme.json  # Deprecated
-grep "\"version\": [^23]" theme.json  # Invalid version
+test -f theme.json && ! rg -q "\"version\"" theme.json && echo "CRITICAL: theme.json missing version"
+rg -n "\"version\": 1" theme.json  # Deprecated
+rg -n "\"version\": [^23]" theme.json  # Invalid version
 
 # Missing style.css required header
-grep -L "Theme Name:" style.css
+test -f style.css && ! rg -q "Theme Name:" style.css && echo "CRITICAL: style.css missing Theme Name header"
 
 # v3 theme.json with custom fontSizes but missing defaultFontSizes: false
-grep -A 5 "\"fontSizes\":" theme.json | grep -L "\"defaultFontSizes\": false"
+rg -n "\"fontSizes\"" theme.json
+# Manual follow-up: if custom fontSizes are defined, confirm defaultFontSizes is explicitly false.
 
 # v3 theme.json with custom spacingSizes but missing defaultSpacingSizes: false
-grep -A 5 "\"spacingSizes\":" theme.json | grep -L "\"defaultSpacingSizes\": false"
+rg -n "\"spacingSizes\"" theme.json
+# Manual follow-up: if custom spacingSizes are defined, confirm defaultSpacingSizes is explicitly false.
 
 # Child theme missing Template header
-grep "Template:" style.css || echo "CRITICAL: Child theme missing Template header"
+test -f style.css && ! rg -q "Template:" style.css && echo "CRITICAL: If this is a child theme, style.css is missing Template header"
 ```
 
 ### WARNING Patterns
 
 ```bash
 # theme.json version 2 (should upgrade to v3)
-grep -n "\"version\": 2" theme.json
+rg -n "\"version\": 2" theme.json
 
 # Hardcoded inline styles in block templates
-grep -rn "style=\"" templates/ parts/
+rg -n "style=\"" templates/ parts/ -g '*.html'
 
 # Hardcoded color hex values in templates
-grep -rn "#[0-9a-fA-F]\{6\}" templates/ parts/ --include="*.html"
+rg -n "#[0-9a-fA-F]{6}" templates/ parts/ -g '*.html'
 
 # Hardcoded pixel font sizes in templates
-grep -rn "font-size: [0-9]\+px" templates/ parts/ --include="*.html"
+rg -n "font-size:\s*[0-9]+px" templates/ parts/ -g '*.html'
 
 # Root padding without useRootPaddingAwareAlignments
-grep -A 20 "\"styles\"" theme.json | grep "\"padding\"" && grep -L "useRootPaddingAwareAlignments" theme.json
+rg -n "\"padding\"" theme.json
+# Manual follow-up: if root padding is present, confirm useRootPaddingAwareAlignments is enabled.
 
 # useRootPaddingAwareAlignments with CSS shorthand padding (won't work)
-grep "useRootPaddingAwareAlignments.*true" theme.json && grep "\"padding\": \"" theme.json
+rg -n "useRootPaddingAwareAlignments.*true" theme.json
+rg -n "\"padding\":\s*\"" theme.json
 
 # Block theme with add_theme_support() that should be in theme.json
-grep -rn "add_theme_support.*editor-color-palette" functions.php
-grep -rn "add_theme_support.*editor-font-sizes" functions.php
-grep -rn "add_theme_support.*custom-line-height" functions.php
-grep -rn "add_theme_support.*custom-spacing" functions.php
+rg -n "add_theme_support.*editor-color-palette" functions.php
+rg -n "add_theme_support.*editor-font-sizes" functions.php
+rg -n "add_theme_support.*custom-line-height" functions.php
+rg -n "add_theme_support.*custom-spacing" functions.php
 
 # Missing ABSPATH check in functions.php
-head -10 functions.php | grep -L "defined.*ABSPATH"
+test -f functions.php && ! sed -n '1,10p' functions.php | rg -q "defined.*ABSPATH" && echo "WARNING: functions.php missing ABSPATH check in first 10 lines"
 
 # Pattern file without required headers
-grep -L "Title:" patterns/*.php
-grep -L "Slug:" patterns/*.php
+rg -L "Title:" patterns -g '*.php'
+rg -L "Slug:" patterns -g '*.php'
 ```
 
 ### INFO Patterns
 
 ```bash
 # Missing $schema in theme.json
-grep -L "\"\$schema\"" theme.json
+test -f theme.json && ! rg -q "\"\\$schema\"" theme.json && echo "INFO: theme.json missing \$schema"
 
 # Missing style variations directory
 [ ! -d styles ] && echo "INFO: Could add style variations in styles/"
@@ -366,13 +370,13 @@ grep -L "\"\$schema\"" theme.json
 [ ! -d patterns ] && echo "INFO: Could add block patterns in patterns/"
 
 # Missing templateParts registration in theme.json
-grep -L "\"templateParts\"" theme.json
+test -f theme.json && ! rg -q "\"templateParts\"" theme.json && echo "INFO: theme.json missing templateParts registration"
 
 # Missing customTemplates registration in theme.json
-grep -L "\"customTemplates\"" theme.json
+test -f theme.json && ! rg -q "\"customTemplates\"" theme.json && echo "INFO: theme.json missing customTemplates registration"
 
 # Google Fonts CDN usage (could use local fonts)
-grep -rn "fonts.googleapis.com" .
+rg -n "fonts.googleapis.com" .
 
 # Classic theme without theme.json (could be hybrid)
 [ -f index.php ] && [ ! -f theme.json ] && echo "INFO: Classic theme could add theme.json for block editor support"
