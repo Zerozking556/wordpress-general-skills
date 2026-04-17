@@ -1,100 +1,148 @@
-# Contributing to WordPress Claude Skills
+# Contributing to Claude WordPress Skills
 
-Thank you for your interest in contributing! This guide will help you get started.
+Thanks for contributing. This project is built around practical WordPress review workflows, so the best contributions usually make the guidance clearer, more accurate, or more useful in real codebases.
 
-## Ways to Contribute
+## Good Ways to Contribute
 
-### 🐛 Report Issues
+### Report an Issue
 
-Found a problem? Open an issue with:
+Open an issue when you find:
 
-- **Skill name** — Which skill has the issue
-- **Description** — What went wrong or what advice was incorrect
-- **Expected behavior** — What should have happened
-- **Code example** — If applicable, share the code that triggered the issue
+- Incorrect or outdated guidance
+- Missing edge cases
+- False positives in review patterns
+- Confusing docs or examples
 
-### 💡 Suggest Improvements
+Helpful issue details:
 
-Have an idea? Open an issue with:
+- Skill name
+- What went wrong
+- What you expected instead
+- A small code sample, if relevant
 
-- **Anti-pattern or best practice** — Describe the pattern
-- **Why it matters** — Performance impact, security risk, etc.
-- **Code examples** — Show BAD and GOOD examples
-- **Sources** — Links to documentation or benchmarks (optional)
+### Suggest an Improvement
 
-### 📝 Improve Documentation
+Open an issue or PR for:
 
-- Fix typos or unclear explanations
-- Add more code examples
-- Improve the README or skill descriptions
+- New anti-patterns or best practices
+- Better BAD/GOOD examples
+- Improved trigger phrases
+- Clearer workflow steps
+- Missing WordPress, Gutenberg, theme, or WooCommerce guidance
 
-### 🔧 Submit New Skills
+Helpful context:
 
-Want to create a new WordPress skill? See [Creating a New Skill](#creating-a-new-skill) below.
+- Why the change matters
+- Where it applies
+- Links to docs, benchmarks, or references when available
+
+### Improve Documentation
+
+Documentation improvements are always useful, especially when they:
+
+- Tighten wording
+- Fix ambiguity
+- Add practical examples
+- Keep naming, commands, and install guidance in sync
+
+### Add a New Skill
+
+If you want to add a new skill, start by checking whether it belongs as:
+
+- A new standalone skill
+- A reference expansion for an existing skill
+- A new command for an existing skill
+
+That usually keeps the pack focused and avoids overlap.
 
 ## Development Setup
 
-1. **Fork and clone** the repository:
+1. Fork and clone the repository:
 
    ```bash
-   git clone https://github.com/elvismdev/claude-wordpress-skills.git
-   cd claude-wordpress-skills
+   git clone https://github.com/jorgerosal/wordpress-skills.git
+   cd wordpress-skills
    ```
 
-2. **Create a branch** for your changes:
+2. Create a branch for your work:
 
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-3. **Test your changes** by copying to your Claude skills directory:
+3. Test your changes locally. For a single skill, copying it into your Claude skills directory is often enough:
 
    ```bash
    cp -r skills/your-skill ~/.claude/skills/
    ```
 
-4. **Restart Claude Code** to load the updated skill.
+4. Restart Claude Code if needed so the updated skill is loaded.
 
-## Skill Structure
+## Repository Structure
 
-Each skill follows this structure:
+```text
+skills/
+  wp-performance-review/
+  wp-security-review/
+  wp-plugin-development/
+  wp-block-development/
+  wp-theme-development/
+  wp-woocommerce-dev/
 
+commands/
+  wp-perf-review.md
+  wp-perf.md
+  wp-sec-review.md
+  wp-sec.md
+  wp-plugin-review.md
+  wp-plugin.md
+  wp-block-review.md
+  wp-block.md
+  wp-theme-review.md
+  wp-theme.md
+  wp-woo-review.md
+  wp-woo.md
 ```
-skills/skill-name/
-├── SKILL.md              # Required: Main skill file with YAML frontmatter
-└── references/           # Optional: Supporting documentation
-    ├── guide-one.md
-    └── guide-two.md
-```
 
-### SKILL.md Requirements
+## Skill Authoring Guidelines
+
+Each skill should have:
+
+- A `SKILL.md` file with YAML frontmatter
+- A clear scope
+- Trigger phrases that match real user requests
+- Review steps that are specific enough to follow
+- Cross-references when another skill should handle deeper analysis
+
+### `SKILL.md` Frontmatter
 
 ```markdown
 ---
 name: skill-name
-description: What this skill does and when Claude should use it. Include trigger phrases.
+description: What this skill does, when it should be used, and which requests should trigger it.
 ---
-
-# Skill Title
-
-Brief introduction.
-
-## Section One
-
-Content with code examples...
 ```
 
-**Frontmatter rules:**
+Frontmatter rules:
 
-- `name`: lowercase with hyphens, max 64 characters
-- `description`: max 1024 characters, include trigger phrases
+- `name`: lowercase with hyphens
+- `description`: concise, specific, and trigger-aware
 
-### Code Example Standards
+### Good Skill Content
 
-All PHP code must follow [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/):
+Strong skill docs usually:
+
+- State when to use the skill and when not to use it
+- Separate quick detection from deeper review
+- Use examples that look like real WordPress code
+- Explain severity consistently
+- Avoid vague advice like "optimize this" without telling the model what to check
+
+## Code and Example Standards
+
+All PHP examples should follow [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/).
 
 ```php
-// ✅ GOOD: WordPress coding standards
 $query = new WP_Query(
     array(
         'post_type'      => 'post',
@@ -112,82 +160,70 @@ if ( $query->have_posts() ) {
 wp_reset_postdata();
 ```
 
-Key standards:
+Key conventions:
 
 - Spaces inside parentheses: `function_name( $arg )`
-- Use `array()` not `[]` for arrays
-- Yoda conditions: `if ( true === $value )`
-- Snake_case for variables and functions
-- Prefix custom functions: `prefix_function_name()`
+- Use `array()` instead of `[]`
+- Yoda conditions where appropriate
+- Snake_case for WordPress-style functions and variables
+- Prefix custom global functions
 
-### Severity Levels
+## Severity Language
 
-Use consistent severity labels:
+Use severity labels consistently across docs:
 
-| Level | Use For |
+| Level | Meaning |
 |-------|---------|
-| **CRITICAL** | Will cause failures at scale (OOM, 500 errors, DB locks) |
-| **WARNING** | Degrades performance under load |
-| **INFO** | Optimization opportunity, nice-to-have |
+| **CRITICAL** | Vulnerability, broken behavior, review blocker, or high-risk production issue |
+| **WARNING** | Significant correctness, maintainability, compatibility, or performance concern |
+| **INFO** | Lower-risk improvement, modernization, or follow-up opportunity |
 
-### Comment Style
-
-```php
-// ❌ BAD: Description of the problem.
-bad_code_example();
-
-// ✅ GOOD: Description of the solution.
-good_code_example();
-```
+If a skill needs domain-specific nuance, keep the global meaning intact and add the nuance inside the skill.
 
 ## Creating a New Skill
 
-1. **Create the directory structure**:
+1. Create the directory structure:
 
    ```bash
    mkdir -p skills/wp-your-skill/references
    ```
 
-2. **Create SKILL.md** with proper frontmatter and content.
+2. Add `SKILL.md` with frontmatter, scope, workflow, and output guidance.
 
-3. **Add references** if the skill needs supporting documentation.
+3. Add reference files only when they materially help the skill.
 
-4. **Update marketplace.json** to include the new skill:
+4. Add command files in `commands/` if the skill should support explicit slash-command invocation.
 
-   ```json
-   {
-     "name": "wp-your-skill",
-     "source": "./skills/wp-your-skill",
-     "description": "Brief description of what it does"
-   }
-   ```
+5. Update [README.md](README.md) so the public docs reflect the new skill or command.
 
-5. **Update README.md** to list the new skill in the table.
+6. Add a release note entry in [CHANGELOG.md](CHANGELOG.md).
 
-6. **Test thoroughly** before submitting.
+## Pull Request Checklist
 
-## Pull Request Process
+Before opening a PR:
 
-1. **Ensure your code follows** the standards above.
+- Make sure naming and repository references are current
+- Keep command examples and docs in sync
+- Update README or contributing docs when behavior changes
+- Add a changelog entry for user-visible changes
+- Keep edits scoped to the skill or docs you are improving
 
-2. **Update documentation** if you've changed functionality.
+## Review Expectations
 
-3. **Add a changelog entry** in CHANGELOG.md under "Unreleased".
+PRs are easier to review when they include:
 
-4. **Submit the PR** with a clear description of changes.
-
-5. **Respond to feedback** — we may ask for adjustments.
+- A clear summary of the change
+- The skill or command affected
+- Why the update improves accuracy or usability
+- Example input or output when the change affects behavior
 
 ## Code of Conduct
 
-- Be respectful and constructive
-- Focus on the technical merits
-- Help others learn and improve
+- Be respectful
+- Be specific
+- Assume good intent
+- Focus on improving the work
 
-## Questions?
+## Questions
 
-Open an issue with the "question" label, and we'll help you out.
-
----
-
-Thank you for contributing to better WordPress development! 🎉
+Open an issue with the `question` label if you want feedback before drafting a larger change.
