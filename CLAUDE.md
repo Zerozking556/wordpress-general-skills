@@ -167,6 +167,9 @@ cp -r claude-skills/wp-your-skill ~/.claude/skills/
 cp -r codex-skills/wp-your-skill ~/.codex/skills/
 mkdir -p ~/.codex/claude-skills/wp-your-skill
 cp -r claude-skills/wp-your-skill/references ~/.codex/claude-skills/wp-your-skill/
+
+# Validate repository metadata and docs
+python3 scripts/validate_repo.py
 ```
 
 ## Versioning

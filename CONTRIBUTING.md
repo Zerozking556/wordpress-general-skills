@@ -78,7 +78,13 @@ That usually keeps the pack focused and avoids overlap.
 
 4. For Codex wrappers, copy the relevant folder into `~/.codex/skills/` or `$CODEX_HOME/skills/`, and copy the matching shared references under `claude-skills/` into `~/.codex/claude-skills/` or `$CODEX_HOME/claude-skills/`.
 
-5. Restart Claude Code or reload Codex if needed so the updated skill is available.
+5. Run the repository validator:
+
+   ```bash
+   python3 scripts/validate_repo.py
+   ```
+
+6. Restart Claude Code or reload Codex if needed so the updated skill is available.
 
 ## Repository Structure
 
@@ -221,6 +227,8 @@ If a skill needs domain-specific nuance, keep the global meaning intact and add 
 6. Update [README.md](README.md) so the public docs reflect the new skill or command.
 
 7. Add a release note entry in [CHANGELOG.md](CHANGELOG.md).
+
+8. Run `python3 scripts/validate_repo.py`.
 
 ## Pull Request Checklist
 
