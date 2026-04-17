@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WordPress Skills Installation Demo</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .intro {
+      margin-bottom: 24px;
+    }
+
+    .intro h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    .intro p {
+      margin: 0;
+      color: #9fb0c3;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    #container {
+      min-height: 740px;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      color: #8b949e;
+      font-size: 14px;
+    }
+
+    a {
+      color: #58a6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="intro">
+      <h1>WordPress Skills Installation Demo</h1>
+      <p>
+        A Glorious Demo walkthrough for the recommended install paths in this repository:
+        project install, user-account install, and single-skill install.
+      </p>
+    </div>
+
+    <div id="container"></div>
+
+    <p class="footer-note">
+      Built with
+      <a href="https://github.com/glorious-codes/glorious-demo">glorious-demo</a>.
+      Open this file in a browser to view the animation.
+    </p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.js"></script>
+  <script>
+    const demo = new GDemo('#container');
+
+    const overview = `# Installation Options
+
+1. Add to your project (recommended)
+2. Install for your user account
+3. Install one skill manually
+
+Tip:
+- Use the project install for teams
+- Use the user-account install for solo usage
+- Use manual install when you only want one skill`;
+
+    demo
+      .openApp('editor', {
+        minHeight: '300px',
+        windowTitle: 'install-options.md',
+        initialContent: ''
+      })
+      .write(overview, { onCompleteDelay: 1200 })
+      .openApp('terminal', {
+        minHeight: '190px',
+        windowTitle: 'project-install',
+        promptString: '~/my-project $',
+        id: 'project'
+      })
+      .command(
+        'git submodule add https://github.com/jorgerosal/wordpress-skills.git .claude/plugins/wordpress',
+        { id: 'project', onCompleteDelay: 400 }
+      )
+      .respond('Adding WordPress skills to this project...', {
+        id: 'project',
+        onCompleteDelay: 800
+      })
+      .command('git commit -m "Add WordPress Claude skills"', {
+        id: 'project',
+        onCompleteDelay: 400
+      })
+      .respond('[recommended] best for teams and client work', {
+        id: 'project',
+        onCompleteDelay: 1200
+      })
+      .openApp('terminal', {
+        minHeight: '160px',
+        windowTitle: 'user-install',
+        promptString: '~ $',
+        id: 'user'
+      })
+      .command(
+        'git clone https://github.com/jorgerosal/wordpress-skills.git ~/.claude/plugins/wordpress',
+        { id: 'user', onCompleteDelay: 400 }
+      )
+      .respond('Cloning for global machine-wide usage...', {
+        id: 'user',
+        onCompleteDelay: 800
+      })
+      .command('cd ~/.claude/plugins/wordpress && git pull', {
+        id: 'user',
+        onCompleteDelay: 400
+      })
+      .respond('[solo] easiest option across multiple projects', {
+        id: 'user',
+        onCompleteDelay: 1200
+      })
+      .openApp('terminal', {
+        minHeight: '180px',
+        windowTitle: 'single-skill-install',
+        promptString: '~/wordpress-skills $',
+        id: 'single'
+      })
+      .command('cp -r claude-skills/wp-performance-review ~/.claude/skills/', {
+        id: 'single',
+        onCompleteDelay: 400
+      })
+      .respond('Copied one skill only. Updates are manual.', {
+        id: 'single',
+        onCompleteDelay: 900
+      })
+      .command('/wp-perf-review', {
+        id: 'single',
+        promptString: 'claude> ',
+        onCompleteDelay: 400
+      })
+      .respond('Ready to review a WordPress project.', {
+        id: 'single',
+        onCompleteDelay: 900
+      })
+      .end();
+  </script>
+</body>
+</html>

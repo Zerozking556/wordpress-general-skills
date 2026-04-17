@@ -1,0 +1,49 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#0D1117"/>
+  <rect x="32" y="32" width="1136" height="656" rx="22" fill="#111827" stroke="#30363D"/>
+
+  <text x="68" y="92" fill="#E6EDF3" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">
+    Installation Demo
+  </text>
+  <text x="68" y="126" fill="#8B949E" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    Project install, user-account install, and single-skill install
+  </text>
+
+  <rect x="68" y="164" width="1064" height="152" rx="16" fill="#161B22" stroke="#30363D"/>
+  <circle cx="102" cy="198" r="7" fill="#F85149"/>
+  <circle cx="126" cy="198" r="7" fill="#F2CC60"/>
+  <circle cx="150" cy="198" r="7" fill="#3FB950"/>
+  <text x="182" y="204" fill="#C9D1D9" font-family="Menlo, Monaco, Consolas, monospace" font-size="18">
+    install-options.md
+  </text>
+  <text x="96" y="246" fill="#58A6FF" font-family="Menlo, Monaco, Consolas, monospace" font-size="20">1.</text>
+  <text x="128" y="246" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="20">Add to your project (recommended)</text>
+  <text x="96" y="278" fill="#58A6FF" font-family="Menlo, Monaco, Consolas, monospace" font-size="20">2.</text>
+  <text x="128" y="278" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="20">Install for your user account</text>
+  <text x="96" y="310" fill="#58A6FF" font-family="Menlo, Monaco, Consolas, monospace" font-size="20">3.</text>
+  <text x="128" y="310" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="20">Install one skill manually</text>
+
+  <rect x="68" y="348" width="1064" height="106" rx="16" fill="#0F172A" stroke="#30363D"/>
+  <text x="96" y="387" fill="#A5D6FF" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">~/my-project $</text>
+  <text x="232" y="387" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">git submodule add https://github.com/jorgerosal/wordpress-skills.git .claude/plugins/wordpress</text>
+  <text x="96" y="421" fill="#3FB950" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">[recommended]</text>
+  <text x="216" y="421" fill="#C9D1D9" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">Best for teams and client work</text>
+
+  <rect x="68" y="478" width="514" height="146" rx="16" fill="#0F172A" stroke="#30363D"/>
+  <text x="96" y="518" fill="#A5D6FF" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">~ $</text>
+  <text x="130" y="518" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">git clone https://github.com/jorgerosal/wordpress-skills.git</text>
+  <text x="96" y="548" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">~/.claude/plugins/wordpress</text>
+  <text x="96" y="590" fill="#3FB950" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">[solo]</text>
+  <text x="152" y="590" fill="#C9D1D9" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">Easiest across multiple projects</text>
+
+  <rect x="618" y="478" width="514" height="146" rx="16" fill="#0F172A" stroke="#30363D"/>
+  <text x="646" y="518" fill="#A5D6FF" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">~/wordpress-skills $</text>
+  <text x="840" y="518" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">cp -r claude-skills/wp-performance-review</text>
+  <text x="646" y="548" fill="#E6EDF3" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">~/.claude/skills/</text>
+  <text x="646" y="590" fill="#F2CC60" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">[manual]</text>
+  <text x="726" y="590" fill="#C9D1D9" font-family="Menlo, Monaco, Consolas, monospace" font-size="16">Good when you only want one skill</text>
+
+  <text x="68" y="664" fill="#8B949E" font-family="Arial, Helvetica, sans-serif" font-size="16">
+    Open public/glorious-install-demo.html locally to view the animated Glorious Demo walkthrough.
+  </text>
+</svg>
