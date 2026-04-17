@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 
 - Expanded the repository from 6 to 11 WordPress skill domains and from 12 to 22 Claude slash commands
 - Added a deployable GitHub Pages single-page site in `docs/` with a docs-style layout, install walkthroughs, and Glorious Demo-based installation previews
+- Corrected outdated performance-review guidance around `post__not_in`, unvalidated IDs, loop heuristics, editor performance, and Elasticsearch wording
+- Added a repository validator and GitHub Actions workflow to check Claude/Codex skill parity, command docs, and key documentation consistency
 - Refreshed `CLAUDE.md` so maintainer guidance matches the expanded repository layout instead of the older performance-only structure
 - Normalized cross-skill references to the actual skill names (`wp-block-development` and `wp-woocommerce-dev`)
 - Reworked fragile quick-scan shell snippets to use recursive `rg`-based searches and clearer manual follow-up notes where command-only detection is unreliable
