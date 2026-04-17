@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2026-04-17
+
+### Changed
+
+- Refreshed `CLAUDE.md` so maintainer guidance matches the current six-skill repository layout instead of the older performance-only structure
+- Normalized cross-skill references to the actual skill names (`wp-block-development` and `wp-woocommerce-dev`)
+- Reworked fragile quick-scan shell snippets to use recursive `rg`-based searches and clearer manual follow-up notes where command-only detection is unreliable
+- Standardized global severity guidance in `CLAUDE.md` so `CRITICAL`, `WARNING`, and `INFO` work consistently across performance, security, plugin, block, theme, and WooCommerce reviews
+- Restyled `README.md` with stronger GitHub presentation, clearer section hierarchy, tighter copy, and improved command and skill summaries
+- Simplified installation guidance in `README.md` to emphasize project install, user-account install, and manual single-skill setup with update and verification steps
+- Refreshed `CONTRIBUTING.md` to match the README tone, clarify contribution paths, and align skill authoring guidance with current repository conventions
+- Updated repository and package references in docs so install, clone, submodule, and namespaced command examples consistently point to `jorgerosal/wordpress-skills`
+
 ## [2.0.0] - 2026-02-06
 
 ### Added
