@@ -1,19 +1,20 @@
-# Claude WordPress Skills
+# WordPress Skills for Claude and Codex
 
 <p align="center">
-  <img src="public/Claude%20Skills%20for%20Wordpress.jpg" alt="Claude WordPress Skills" width="100%" />
+  <img src="public/Claude%20Skills%20for%20Wordpress.jpg" alt="WordPress Skills for Claude and Codex" width="100%" />
 </p>
 
 <p align="center">
   <a href="https://claude.ai/code">
     <img src="https://img.shields.io/badge/Claude%20Code-Ready-1f6feb?style=for-the-badge" alt="Claude Code Ready" />
   </a>
+  <img src="https://img.shields.io/badge/Codex-Parallel%20skills-0a7ea4?style=for-the-badge" alt="Codex parallel skills" />
   <img src="https://img.shields.io/badge/WordPress-6%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
   <img src="https://img.shields.io/badge/Commands-12%20slash%20commands-2da44e?style=for-the-badge" alt="12 slash commands" />
   <img src="https://img.shields.io/badge/Focus-Code%20review%20and%20triage-8250df?style=for-the-badge" alt="Code review and triage" />
 </p>
 
-Professional WordPress skills for [Claude Code](https://claude.ai/code), built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, blocks, themes, and WooCommerce.
+Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, blocks, themes, and WooCommerce.
 
 ## Why This Pack
 
@@ -22,6 +23,18 @@ Professional WordPress skills for [Claude Code](https://claude.ai/code), built f
 - Specialized guidance for Gutenberg, block themes, and WooCommerce
 - Cross-skill handoffs when a finding belongs in another domain
 - Line-numbered, severity-based review output with fix guidance
+- Parallel skill wrappers for both Claude and Codex
+
+## Repository Layout
+
+```text
+claude-skills/   # Claude-oriented skill pack with shared reference docs
+codex-skills/    # Codex-oriented skill wrappers for the same six domains
+commands/        # Claude slash commands
+public/          # README assets
+```
+
+The Codex skills reuse the domain references stored under `claude-skills/` so the review heuristics stay aligned without duplicating the whole reference library.
 
 ## Available Skills
 
@@ -36,15 +49,17 @@ Professional WordPress skills for [Claude Code](https://claude.ai/code), built f
 
 ## Installation
 
-Pick the install path that matches how you use Claude Code.
+Choose the install path for the agent you want to use.
 
-### Which Option Should You Use?
+### Claude Code
+
+#### Which Option Should You Use?
 
 - **Use Option 1** if you want the skills available inside one project for yourself or your team
 - **Use Option 2** if you want the skills available across your machine
-- **Use Option 3** if you only want one skill and are fine updating it manually
+- **Use Option 3** if you only want one Claude skill and are fine updating it manually
 
-### Option 1: Add to Your Project (Recommended)
+#### Option 1: Add to Your Project (Recommended)
 
 Best for shared projects, client work, and teams.
 
@@ -62,7 +77,7 @@ git add .claude/plugins/wordpress
 git commit -m "Update WordPress Claude skills"
 ```
 
-### Option 2: Install for Your User Account
+#### Option 2: Install for Your User Account
 
 Best for solo usage across multiple projects.
 
@@ -77,18 +92,18 @@ cd ~/.claude/plugins/wordpress
 git pull
 ```
 
-### Option 3: Install One Skill Manually
+#### Option 3: Install One Skill Manually
 
 Best if you only want a single skill and do not need the full pack.
 
 ```bash
 # Copy just the performance review skill
-cp -r skills/wp-performance-review ~/.claude/skills/
+cp -r claude-skills/wp-performance-review ~/.claude/skills/
 ```
 
 If you use this option, updates are manual. Re-copy the skill when the source changes.
 
-### Verify the Install
+#### Verify the Claude Install
 
 After installing:
 
@@ -100,9 +115,37 @@ After installing:
 /wp-perf-review
 ```
 
+### Codex
+
+Install the parallel Codex wrappers if you want the same WordPress domains available as Codex skills.
+
+#### Option 1: Install All Codex Skills
+
+```bash
+mkdir -p ~/.codex/skills
+cp -r codex-skills/* ~/.codex/skills/
+```
+
+#### Option 2: Install One Codex Skill
+
+```bash
+mkdir -p ~/.codex/skills
+cp -r codex-skills/wp-performance-review ~/.codex/skills/
+```
+
+If your Codex setup uses a custom `CODEX_HOME`, copy the folders into `$CODEX_HOME/skills/` instead.
+
+#### Verify the Codex Install
+
+Open a WordPress project in Codex and invoke the skill naturally, for example:
+
+```text
+Review this plugin for performance issues
+```
+
 ## Slash Commands
 
-Each skill includes a full review command and a faster triage command.
+Claude skills include a full review command and a faster triage command.
 
 | Command | Use Case |
 |---------|----------|
@@ -147,7 +190,7 @@ When installed from the marketplace, commands are namespaced:
 
 ## Natural Language Usage
 
-You can also invoke the skills without slash commands. Ask naturally, for example:
+You can also invoke the skills without slash commands or explicit command files. Ask naturally, for example:
 
 ```text
 Review this plugin for performance issues
@@ -158,7 +201,7 @@ Review this theme before launch
 Find slow queries in this plugin
 ```
 
-Claude will match the request to the most relevant skill and follow that review workflow.
+Claude or Codex will match the request to the most relevant skill and follow that review workflow.
 
 ### Trigger Phrases
 
@@ -231,10 +274,10 @@ All six skills produce structured findings with severity labels (`Critical`, `Wa
 
 ## Requirements
 
-- [Claude Code](https://claude.ai/code) CLI
-- A local or project-based Claude skills setup
+- [Claude Code](https://claude.ai/code) or Codex
+- A local or project-based skill installation
 
-No additional dependencies are required.
+No additional dependencies are required beyond your agent setup.
 
 ## Contributing
 
@@ -257,4 +300,4 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ---
 
-These skills reflect practical WordPress engineering patterns and tradeoffs. They are not affiliated with or endorsed by WordPress, WooCommerce, or any hosting platform.
+These skills reflect practical WordPress engineering patterns and tradeoffs. They are not affiliated with or endorsed by Claude, Codex, WordPress, WooCommerce, or any hosting platform.

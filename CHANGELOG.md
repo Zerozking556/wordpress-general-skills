@@ -14,6 +14,9 @@ All notable changes to this project will be documented in this file.
 - Simplified installation guidance in `README.md` to emphasize project install, user-account install, and manual single-skill setup with update and verification steps
 - Refreshed `CONTRIBUTING.md` to match the README tone, clarify contribution paths, and align skill authoring guidance with current repository conventions
 - Updated repository and package references in docs so install, clone, submodule, and namespaced command examples consistently point to `jorgerosal/wordpress-skills`
+- Renamed the Claude skill tree from `skills/` to `claude-skills/` to make the agent-specific structure explicit
+- Added a parallel `codex-skills/` pack with Codex-native wrappers for all six WordPress review domains
+- Updated docs to explain the dual Claude and Codex layout and the new installation paths for both agents
 
 ## [2.0.0] - 2026-02-06
 

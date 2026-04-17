@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository contains a WordPress skill pack for Claude Code covering six domains:
+This repository contains a parallel WordPress skill pack for Claude Code and Codex covering six domains:
 
 - Performance reviews
 - Security reviews
@@ -13,12 +13,12 @@ This repository contains a WordPress skill pack for Claude Code covering six dom
 - Theme development reviews
 - WooCommerce development reviews
 
-The skills are designed for WordPress 6.x+ codebases and provide structured review workflows, quick triage commands, reference docs, and cross-skill handoffs when a finding belongs in another specialty.
+The Claude and Codex wrappers are designed for WordPress 6.x+ codebases and provide structured review workflows, shared reference docs, quick triage commands for Claude, and cross-skill handoffs when a finding belongs in another specialty.
 
 ## Repository Structure
 
 ```
-skills/                        # Skill definitions
+claude-skills/                 # Claude skill definitions and shared references
   wp-performance-review/
     SKILL.md                   # Main skill file with YAML frontmatter
     references/                # Supporting documentation
@@ -37,6 +37,20 @@ skills/                        # Skill definitions
   wp-woocommerce-dev/
     SKILL.md
     references/
+
+codex-skills/                  # Codex-oriented wrappers for the same domains
+  wp-performance-review/
+    SKILL.md
+  wp-security-review/
+    SKILL.md
+  wp-plugin-development/
+    SKILL.md
+  wp-block-development/
+    SKILL.md
+  wp-theme-development/
+    SKILL.md
+  wp-woocommerce-dev/
+    SKILL.md
 
 commands/                      # Slash command definitions
   wp-perf-review.md            # Full performance review command
@@ -59,7 +73,7 @@ CONTRIBUTING.md                # Contribution guidance
 
 ## Adding New Skills
 
-1. Create directory: `skills/wp-your-skill/`
+1. Create directory: `claude-skills/wp-your-skill/`
 2. Create `SKILL.md` with YAML frontmatter:
    ```yaml
    ---
@@ -67,10 +81,11 @@ CONTRIBUTING.md                # Contribution guidance
    description: Trigger phrases and when to use. Max 1024 chars.
    ---
    ```
-3. Add references in `skills/wp-your-skill/references/` if needed
-4. Add slash commands in `commands/` if the skill needs explicit invocation
-5. Update `README.md` skill and command tables
-6. Update `CHANGELOG.md`
+3. Add references in `claude-skills/wp-your-skill/references/` if needed
+4. Create a parallel Codex wrapper in `codex-skills/wp-your-skill/` when the domain should also be available in Codex
+5. Add slash commands in `commands/` if the Claude skill needs explicit invocation
+6. Update `README.md` skill and command tables
+7. Update `CHANGELOG.md`
 
 ## Adding Slash Commands
 
@@ -101,12 +116,15 @@ Each individual skill may further interpret severity in its own domain, but thes
 ## Testing Changes
 
 ```bash
-# Review the changed skill and command together
-sed -n '1,120p' skills/wp-your-skill/SKILL.md
+# Review the changed Claude skill and command together
+sed -n '1,120p' claude-skills/wp-your-skill/SKILL.md
 sed -n '1,80p' commands/wp-your-command.md
 
-# If you test by copying a single skill locally
-cp -r skills/wp-your-skill ~/.claude/skills/
+# If you test by copying a single Claude skill locally
+cp -r claude-skills/wp-your-skill ~/.claude/skills/
+
+# If you test the Codex wrapper locally
+cp -r codex-skills/wp-your-skill ~/.codex/skills/
 ```
 
 ## Versioning

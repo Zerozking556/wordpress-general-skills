@@ -1,4 +1,4 @@
-# Contributing to Claude WordPress Skills
+# Contributing to WordPress Skills for Claude and Codex
 
 Thanks for contributing. This project is built around practical WordPress review workflows, so the best contributions usually make the guidance clearer, more accurate, or more useful in real codebases.
 
@@ -70,18 +70,28 @@ That usually keeps the pack focused and avoids overlap.
    git checkout -b feature/your-feature-name
    ```
 
-3. Test your changes locally. For a single skill, copying it into your Claude skills directory is often enough:
+3. Test your changes locally. For a single Claude skill, copying it into your Claude skills directory is often enough:
 
    ```bash
-   cp -r skills/your-skill ~/.claude/skills/
+   cp -r claude-skills/your-skill ~/.claude/skills/
    ```
 
-4. Restart Claude Code if needed so the updated skill is loaded.
+4. For Codex wrappers, copy the relevant folder into `~/.codex/skills/` or `$CODEX_HOME/skills/`.
+
+5. Restart Claude Code or reload Codex if needed so the updated skill is available.
 
 ## Repository Structure
 
 ```text
-skills/
+claude-skills/
+  wp-performance-review/
+  wp-security-review/
+  wp-plugin-development/
+  wp-block-development/
+  wp-theme-development/
+  wp-woocommerce-dev/
+
+codex-skills/
   wp-performance-review/
   wp-security-review/
   wp-plugin-development/
@@ -106,13 +116,15 @@ commands/
 
 ## Skill Authoring Guidelines
 
-Each skill should have:
+Each skill wrapper should have:
 
 - A `SKILL.md` file with YAML frontmatter
 - A clear scope
 - Trigger phrases that match real user requests
 - Review steps that are specific enough to follow
 - Cross-references when another skill should handle deeper analysis
+
+Claude skills may include deeper in-repo references and command integrations. Codex skills can stay thinner and point at the shared reference docs under `claude-skills/`.
 
 ### `SKILL.md` Frontmatter
 
@@ -185,18 +197,20 @@ If a skill needs domain-specific nuance, keep the global meaning intact and add 
 1. Create the directory structure:
 
    ```bash
-   mkdir -p skills/wp-your-skill/references
+   mkdir -p claude-skills/wp-your-skill/references
    ```
 
-2. Add `SKILL.md` with frontmatter, scope, workflow, and output guidance.
+2. Add the Claude skill in `claude-skills/wp-your-skill/` with frontmatter, scope, workflow, and output guidance.
 
-3. Add reference files only when they materially help the skill.
+3. Add the parallel Codex wrapper in `codex-skills/wp-your-skill/` if the domain should also be available in Codex.
 
-4. Add command files in `commands/` if the skill should support explicit slash-command invocation.
+4. Add reference files only when they materially help the skill.
 
-5. Update [README.md](README.md) so the public docs reflect the new skill or command.
+5. Add command files in `commands/` if the Claude skill should support explicit slash-command invocation.
 
-6. Add a release note entry in [CHANGELOG.md](CHANGELOG.md).
+6. Update [README.md](README.md) so the public docs reflect the new skill or command.
+
+7. Add a release note entry in [CHANGELOG.md](CHANGELOG.md).
 
 ## Pull Request Checklist
 
