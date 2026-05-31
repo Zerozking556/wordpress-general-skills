@@ -7,17 +7,40 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - **wp-acf-and-content-modeling** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-acf-review`, `/wp-acf`)
+- **wp-headless-and-wpgraphql** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-headless-review`, `/wp-headless`)
+- **wp-ci-cd-and-release-engineering** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-release-review`, `/wp-release`)
+- SEO/GEO-oriented docs pages for search and AI discovery:
+  - `docs/guides/review-wordpress-plugin-with-claude-code.html`
+  - `docs/guides/wordpress-ai-code-review-faq.html`
+- Search-intent guide pages under `docs/guides/` for:
+  - WooCommerce plugin reviews with Claude Code
+  - WordPress REST API reviews with Claude Code
+  - WooCommerce extension reviews with Claude Code
+  - WordPress release engineering checklists for Claude Code
+- `docs/guides/index.html` as a lightweight guide hub for focused review workflows
+- `docs/robots.txt`, `docs/sitemap.xml`, and `docs/llms.txt` for GitHub Pages and AI-search indexing
 
 ### Changed
 
-- Updated the README skills table, command list, quick examples, and repo badges to include the new ACF/content-modeling domain
-- Added ACF/content-modeling guidance to the main repository overview so the pack description matches the new coverage area
+- Expanded the repository from 15 to 17 WordPress review domains and from 30 to 34 Claude slash commands
+- Updated README coverage text, skills table, command listing, quick examples, trigger phrases, and repo badges to include the ACF/content-modeling, headless WPGraphQL, and CI/CD release-engineering domains
+- Added guide links, FAQ links, and example-output framing to improve README discoverability and conversion for search visitors
+- Strengthened GitHub Pages metadata with canonical, Open Graph, Twitter, and structured-data tags
+- Added guide links and a guides section to the GitHub Pages homepage so workflow docs are easier to discover
+- Prepared tighter repository positioning around AI-assisted WordPress code review and workflow-specific landing pages
 - Added planned roadmap entries for `wp-wpcli-and-ops`, `wp-playground-development`, and `wp-phpstan-review` to the README skills table with in-progress status markers
 - Clarified README skill status labels so shipped and in-progress skill entries are easier to distinguish
 - Added initial Claude and Codex skill scaffolds for `wp-wpcli-and-ops`, `wp-playground-development`, and `wp-phpstan-review`, plus shared reference docs and six new slash commands
 - Expanded README command coverage to include the new ops, Playground, and PHPStan command pairs
 - Strengthened the in-progress WP-CLI, Playground, and PHPStan skills with more concrete examples, safer review heuristics, and clearer reference patterns
 - Added reusable sample fixture files for the new WP-CLI, Playground, and PHPStan skills so contributors can adapt real examples instead of starting from scratch
+- Corrected Claude plugin install and verification docs to use the plugin namespace (`/wordpress-skills:...`) and consistent `wordpress-skills` install paths
+- Extended `scripts/validate_repo.py` to verify the Claude plugin manifest and root `skills/` layout so plugin packaging regressions are caught in CI
+
+### Fixed
+
+- Added a Claude Code plugin manifest at `.claude-plugin/plugin.json` so the repository can be recognized as an installable plugin instead of only a loose file tree
+- Added a plugin-compatible root `skills/` alias that exposes the existing Claude skill pack at the conventional Claude Code plugin path
 
 ## [2.1.0] - 2026-04-17
 

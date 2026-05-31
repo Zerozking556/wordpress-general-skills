@@ -9,12 +9,12 @@
     <img src="https://img.shields.io/badge/Claude%20Code-Ready-1f6feb?style=for-the-badge" alt="Claude Code Ready" />
   </a>
   <img src="https://img.shields.io/badge/Codex-Parallel%20skills-0a7ea4?style=for-the-badge" alt="Codex parallel skills" />
-  <img src="https://img.shields.io/badge/WordPress-15%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
-  <img src="https://img.shields.io/badge/Commands-30%20slash%20commands-2da44e?style=for-the-badge" alt="30 slash commands" />
+  <img src="https://img.shields.io/badge/WordPress-17%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
+  <img src="https://img.shields.io/badge/Commands-34%20slash%20commands-2da44e?style=for-the-badge" alt="34 slash commands" />
   <img src="https://img.shields.io/badge/Focus-Code%20review%20and%20triage-8250df?style=for-the-badge" alt="Code review and triage" />
 </p>
 
-Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for code review, fast triage, and modern WordPress development workflows across performance, security, plugins, ACF/content modeling, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, WP-CLI operations, Playground, and PHPStan.
+Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for AI-assisted WordPress code review, fast triage, and modern WordPress development workflows across plugin architecture, security audits, ACF/content modeling, headless WPGraphQL, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, release engineering, WP-CLI operations, Playground, and PHPStan.
 
 ## Why This Pack
 
@@ -28,11 +28,13 @@ Professional WordPress skills for [Claude Code](https://claude.ai/code) and Code
 ## Repository Layout
 
 ```text
-claude-skills/   # Claude-oriented skill pack with shared reference docs
-codex-skills/    # Codex-oriented skill wrappers for the same fourteen domains
+.claude-plugin/  # Claude Code plugin manifest
+claude-skills/   # Canonical Claude-oriented skill pack with shared reference docs
+skills/          # Claude Code plugin-compatible alias to claude-skills/
+codex-skills/    # Codex-oriented skill wrappers for the same seventeen domains
 commands/        # Claude slash commands
 public/          # README assets
-docs/            # GitHub Pages single-page site
+docs/            # GitHub Pages docs and guide surface
 ```
 
 The Codex skills reuse the domain references stored under `claude-skills/` so the review heuristics stay aligned without duplicating the whole reference library.
@@ -47,6 +49,20 @@ Run the repository validator before opening a PR or after adding skills, command
 python3 scripts/validate_repo.py
 ```
 
+## Guides and Workflow Docs
+
+The GitHub Pages docs double as a search-friendly surface for specific WordPress + AI review workflows:
+
+- [Guide index](https://jorgerosal.github.io/wordpress-skills/guides/)
+- [How to review a WordPress plugin with Claude Code](https://jorgerosal.github.io/wordpress-skills/guides/review-wordpress-plugin-with-claude-code.html)
+- [WordPress AI code review FAQ](https://jorgerosal.github.io/wordpress-skills/guides/wordpress-ai-code-review-faq.html)
+- [How to review a WooCommerce plugin with Claude Code](https://jorgerosal.github.io/wordpress-skills/guides/review-woocommerce-plugin-with-claude-code.html)
+- [How to review a WordPress REST API with Claude Code](https://jorgerosal.github.io/wordpress-skills/guides/review-wordpress-rest-api-with-claude-code.html)
+- [How to review a WooCommerce extension with Claude Code](https://jorgerosal.github.io/wordpress-skills/guides/review-woocommerce-extension-with-claude-code.html)
+- [WordPress release engineering checklist for Claude Code](https://jorgerosal.github.io/wordpress-skills/guides/wordpress-release-engineering-checklist.html)
+
+These pages are meant for both human readers and AI/search systems, with concrete commands, checklists, and example findings.
+
 ## Available Skills
 
 `✅` Available now · `🚧` In progress
@@ -57,6 +73,7 @@ python3 scripts/validate_repo.py
 | **wp-security-review** | XSS, SQL injection, CSRF, auth checks, file upload risks | ✅ |
 | **wp-plugin-development** | Plugin structure, lifecycle hooks, Settings API, i18n, WordPress.org standards | ✅ |
 | **wp-acf-and-content-modeling** | ACF field groups, CPT/taxonomy design, repeaters, flexible content, JSON sync, and meta-query risk | ✅ |
+| **wp-headless-and-wpgraphql** | WPGraphQL schema design, preview/auth flows, resolver performance, caching, and frontend revalidation | ✅ |
 | **wp-block-development** | `block.json`, React/JSX editor patterns, render callbacks, Interactivity API | ✅ |
 | **wp-theme-development** | `theme.json`, templates, template parts, style variations, FSE patterns | ✅ |
 | **wp-woocommerce-dev** | HPOS, CRUD APIs, payment gateway patterns, cart fragments, template overrides | ✅ |
@@ -65,6 +82,7 @@ python3 scripts/validate_repo.py
 | **wp-migration-upgrade-review** | Versioned upgrades, `dbDelta()`, backfills, rollout safety, schema changes | ✅ |
 | **wp-accessibility-review** | Semantic markup, keyboard access, focus behavior, labels, ARIA, accessible interactions | ✅ |
 | **wp-test-strategy** | Unit vs integration vs E2E coverage, test planning, regression risk, WordPress test gaps | ✅ |
+| **wp-ci-cd-and-release-engineering** | GitHub Actions, artifact packaging, deploy gating, WordPress.org release flows, and rollback safety | ✅ |
 | **wp-wpcli-and-ops** | WP-CLI workflows, multisite operations, search-replace safety, automation, and deployment checks | 🚧 |
 | **wp-playground-development** | WordPress Playground blueprints, reproducible demos, zero-setup bug repros, and embed patterns | 🚧 |
 | **wp-phpstan-review** | PHPStan for WordPress projects, baseline strategy, CI integration, and practical static-analysis review | 🚧 |
@@ -87,15 +105,15 @@ Best for shared projects, client work, and teams.
 
 ```bash
 # In your project root
-git submodule add https://github.com/jorgerosal/wordpress-skills.git .claude/plugins/wordpress
+git submodule add https://github.com/jorgerosal/wordpress-skills.git .claude/plugins/wordpress-skills
 git commit -m "Add WordPress Claude skills"
 ```
 
 To update later:
 
 ```bash
-git submodule update --remote .claude/plugins/wordpress
-git add .claude/plugins/wordpress
+git submodule update --remote .claude/plugins/wordpress-skills
+git add .claude/plugins/wordpress-skills
 git commit -m "Update WordPress Claude skills"
 ```
 
@@ -104,13 +122,13 @@ git commit -m "Update WordPress Claude skills"
 Best for solo usage across multiple projects.
 
 ```bash
-git clone https://github.com/jorgerosal/wordpress-skills.git ~/.claude/plugins/wordpress
+git clone https://github.com/jorgerosal/wordpress-skills.git ~/.claude/plugins/wordpress-skills
 ```
 
 To update later:
 
 ```bash
-cd ~/.claude/plugins/wordpress
+cd ~/.claude/plugins/wordpress-skills
 git pull
 ```
 
@@ -131,11 +149,13 @@ After installing:
 
 1. Restart Claude Code if needed
 2. Open a WordPress project
-3. Run a command such as:
+3. Run a namespaced plugin command such as:
 
 ```bash
-/wp-perf-review
+/wordpress-skills:wp-perf-review
 ```
+
+The plugin install paths above use Claude Code's plugin loader, so commands are namespaced with the plugin name (`wordpress-skills`). If you manually copy a skill into `~/.claude/skills/`, the command stays unnamespaced.
 
 ### Codex
 
@@ -182,6 +202,8 @@ Claude skills include a full review command and a faster triage command.
 | `/wp-plugin [path]` | Fast plugin structure and standards scan |
 | `/wp-acf-review [path]` | Full ACF and content-modeling review for CPTs, taxonomies, field groups, JSON sync, and meta-query risk |
 | `/wp-acf [path]` | Fast ACF/content-model scan for schema and field-group issues |
+| `/wp-headless-review [path]` | Full headless WordPress and WPGraphQL review for schema, preview/auth, and cache/build workflows |
+| `/wp-headless [path]` | Fast headless/WPGraphQL scan for schema and preview/cache risks |
 | `/wp-block-review [path]` | Full Gutenberg block review across PHP and JS/JSX |
 | `/wp-block [path]` | Fast block API and `block.json` scan |
 | `/wp-theme-review [path]` | Full block or classic theme review |
@@ -198,6 +220,8 @@ Claude skills include a full review command and a faster triage command.
 | `/wp-a11y [path]` | Fast accessibility scan for semantic, keyboard, focus, and ARIA issues |
 | `/wp-test-review [path]` | Full test strategy review with prioritized unit, integration, and E2E recommendations |
 | `/wp-test [path]` | Fast testing scan for existing coverage and likely test gaps |
+| `/wp-release-review [path]` | Full CI/CD and release engineering review for pipelines, artifacts, gating, and rollback readiness |
+| `/wp-release [path]` | Fast CI/CD and release scan for deploy and packaging risks |
 | `/wp-ops-review [path]` | Full WP-CLI and operations review for custom commands, multisite scope, and maintenance workflows |
 | `/wp-ops [path]` | Fast WP-CLI and operational risk scan |
 | `/wp-playground-review [path]` | Full Playground review for Blueprints, repro environments, and embed flows |
@@ -217,6 +241,9 @@ Claude skills include a full review command and a faster triage command.
 # Review ACF field groups and content architecture
 /wp-acf-review wp-content/themes/my-theme
 
+# Review a headless WPGraphQL stack
+/wp-headless-review apps/web
+
 # Review a custom block package
 /wp-block-review wp-content/plugins/my-blocks
 
@@ -232,6 +259,9 @@ Claude skills include a full review command and a faster triage command.
 # Plan tests for a risky plugin change
 /wp-test-review wp-content/plugins/my-plugin
 
+# Review WordPress release engineering and deployment workflow
+/wp-release-review .github/workflows
+
 # Review custom WP-CLI operations and runbooks
 /wp-ops-review wp-content/plugins/my-plugin
 
@@ -242,7 +272,7 @@ Claude skills include a full review command and a faster triage command.
 /wp-phpstan-review .
 ```
 
-When installed from the marketplace, commands are namespaced:
+When installed as a Claude Code plugin or from the marketplace, commands are namespaced:
 
 ```bash
 /wordpress-skills:wp-perf-review [path]
@@ -279,6 +309,8 @@ Claude or Codex will match the request to the most relevant skill and follow tha
 | `wp-performance-review` | "performance review", "slow WordPress", "slow queries", "high-traffic", "timeout", "out of memory" |
 | `wp-security-review` | "security audit", "XSS", "SQL injection", "CSRF", "nonce verification", "capability check" |
 | `wp-plugin-development` | "plugin review", "plugin architecture", "activation hook", "Settings API", "Plugin Check" |
+| `wp-acf-and-content-modeling` | "ACF review", "field groups", "flexible content", "content modeling", "ACF JSON" |
+| `wp-headless-and-wpgraphql` | "WPGraphQL", "headless WordPress", "preview flow", "resolver", "frontend revalidation" |
 | `wp-block-development` | "block review", "Gutenberg", "block.json", "InnerBlocks", "Interactivity API", "dynamic block" |
 | `wp-theme-development` | "theme review", "block theme", "theme.json", "FSE", "template parts", "style variations" |
 | `wp-woocommerce-dev` | "WooCommerce review", "HPOS", "payment gateway", "cart fragments", "Action Scheduler" |
@@ -287,10 +319,11 @@ Claude or Codex will match the request to the most relevant skill and follow tha
 | `wp-migration-upgrade-review` | "migration review", "upgrade routine", "dbDelta", "schema change", "backfill" |
 | `wp-accessibility-review` | "accessibility review", "a11y", "keyboard navigation", "focus management", "semantic HTML" |
 | `wp-test-strategy` | "test strategy", "PHPUnit", "integration tests", "Playwright", "coverage" |
+| `wp-ci-cd-and-release-engineering` | "release review", "GitHub Actions", "artifact packaging", "deploy gating", "rollback" |
 
 ## What Each Skill Covers
 
-All eleven skills produce structured findings with severity labels (`Critical`, `Warning`, `Info`), file references, and concrete recommendations.
+All shipped and in-progress skills are designed to produce structured findings with severity labels (`Critical`, `Warning`, `Info`), file references, and concrete recommendations.
 
 ### `wp-performance-review`
 
