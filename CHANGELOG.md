@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
   - WooCommerce extension reviews with Claude Code
   - WordPress release engineering checklists for Claude Code
 - `docs/guides/index.html` as a lightweight guide hub for focused review workflows
+- `docs/plans/2026-06-02-repo-expansion-plan.md` with a repo-specific gap analysis and recommended expansion roadmap based on comparable WordPress agent-skill projects
 - `docs/robots.txt`, `docs/sitemap.xml`, and `docs/llms.txt` for GitHub Pages and AI-search indexing
 
 ### Changed
