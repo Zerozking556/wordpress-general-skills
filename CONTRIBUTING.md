@@ -101,6 +101,7 @@ claude-skills/
   wp-migration-upgrade-review/
   wp-accessibility-review/
   wp-test-strategy/
+  wp-site-audit-and-onboarding/
   wp-wpcli-and-ops/
   wp-playground-development/
   wp-phpstan-review/
@@ -117,6 +118,7 @@ codex-skills/
   wp-migration-upgrade-review/
   wp-accessibility-review/
   wp-test-strategy/
+  wp-site-audit-and-onboarding/
   wp-wpcli-and-ops/
   wp-playground-development/
   wp-phpstan-review/
@@ -144,6 +146,8 @@ commands/
   wp-a11y.md
   wp-test-review.md
   wp-test.md
+  wp-onboard-review.md
+  wp-onboard.md
   wp-ops-review.md
   wp-ops.md
   wp-playground-review.md

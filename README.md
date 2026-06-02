@@ -9,16 +9,17 @@
     <img src="https://img.shields.io/badge/Claude%20Code-Ready-1f6feb?style=for-the-badge" alt="Claude Code Ready" />
   </a>
   <img src="https://img.shields.io/badge/Codex-Parallel%20skills-0a7ea4?style=for-the-badge" alt="Codex parallel skills" />
-  <img src="https://img.shields.io/badge/WordPress-17%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
-  <img src="https://img.shields.io/badge/Commands-34%20slash%20commands-2da44e?style=for-the-badge" alt="34 slash commands" />
+  <img src="https://img.shields.io/badge/WordPress-18%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
+  <img src="https://img.shields.io/badge/Commands-36%20slash%20commands-2da44e?style=for-the-badge" alt="36 slash commands" />
   <img src="https://img.shields.io/badge/Focus-Code%20review%20and%20triage-8250df?style=for-the-badge" alt="Code review and triage" />
 </p>
 
-Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for AI-assisted WordPress code review, fast triage, and modern WordPress development workflows across plugin architecture, security audits, ACF/content modeling, headless WPGraphQL, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, release engineering, WP-CLI operations, Playground, and PHPStan.
+Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for AI-assisted WordPress code review, fast triage, onboarding, and modern WordPress development workflows across plugin architecture, security audits, ACF/content modeling, headless WPGraphQL, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, release engineering, WP-CLI operations, Playground, and PHPStan.
 
 ## Why This Pack
 
 - Structured review workflows for real WordPress codebases
+- Fast onboarding for inherited WordPress repositories before deeper review
 - Quick triage commands for fast audits before deeper review
 - Specialized guidance for Gutenberg, block themes, and WooCommerce
 - Cross-skill handoffs when a finding belongs in another domain
@@ -83,6 +84,7 @@ These pages are meant for both human readers and AI/search systems, with concret
 | **wp-accessibility-review** | Semantic markup, keyboard access, focus behavior, labels, ARIA, accessible interactions | ✅ |
 | **wp-test-strategy** | Unit vs integration vs E2E coverage, test planning, regression risk, WordPress test gaps | ✅ |
 | **wp-ci-cd-and-release-engineering** | GitHub Actions, artifact packaging, deploy gating, WordPress.org release flows, and rollback safety | ✅ |
+| **wp-site-audit-and-onboarding** | First-pass WordPress codebase classification, stack discovery, risk surfacing, and routing into the right follow-up reviews | ✅ |
 | **wp-wpcli-and-ops** | WP-CLI workflows, multisite operations, search-replace safety, automation, and deployment checks | 🚧 |
 | **wp-playground-development** | WordPress Playground blueprints, reproducible demos, zero-setup bug repros, and embed patterns | 🚧 |
 | **wp-phpstan-review** | PHPStan for WordPress projects, baseline strategy, CI integration, and practical static-analysis review | 🚧 |
@@ -222,6 +224,8 @@ Claude skills include a full review command and a faster triage command.
 | `/wp-test [path]` | Fast testing scan for existing coverage and likely test gaps |
 | `/wp-release-review [path]` | Full CI/CD and release engineering review for pipelines, artifacts, gating, and rollback readiness |
 | `/wp-release [path]` | Fast CI/CD and release scan for deploy and packaging risks |
+| `/wp-onboard-review [path]` | Full WordPress onboarding review for stack classification, architecture mapping, and next-review routing |
+| `/wp-onboard [path]` | Fast WordPress onboarding scan for stack detection and initial risk triage |
 | `/wp-ops-review [path]` | Full WP-CLI and operations review for custom commands, multisite scope, and maintenance workflows |
 | `/wp-ops [path]` | Fast WP-CLI and operational risk scan |
 | `/wp-playground-review [path]` | Full Playground review for Blueprints, repro environments, and embed flows |
@@ -262,6 +266,9 @@ Claude skills include a full review command and a faster triage command.
 # Review WordPress release engineering and deployment workflow
 /wp-release-review .github/workflows
 
+# Onboard to an inherited WordPress repo before deeper review
+/wp-onboard-review .
+
 # Review custom WP-CLI operations and runbooks
 /wp-ops-review wp-content/plugins/my-plugin
 
@@ -293,6 +300,7 @@ Find slow queries in this plugin
 Review these custom REST routes
 Check this plugin settings page
 Audit this release migration before deploy
+Onboard me to this WordPress repo and tell me what to review first
 Review this WP-CLI command for operational risk
 Check this Blueprint for a reliable Playground repro
 Audit this phpstan.neon for WordPress plugin analysis

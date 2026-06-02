@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **wp-site-audit-and-onboarding** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-onboard-review`, `/wp-onboard`)
 - **wp-acf-and-content-modeling** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-acf-review`, `/wp-acf`)
 - **wp-headless-and-wpgraphql** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-headless-review`, `/wp-headless`)
 - **wp-ci-cd-and-release-engineering** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-release-review`, `/wp-release`)
@@ -23,8 +24,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Expanded the repository from 15 to 17 WordPress review domains and from 30 to 34 Claude slash commands
-- Updated README coverage text, skills table, command listing, quick examples, trigger phrases, and repo badges to include the ACF/content-modeling, headless WPGraphQL, and CI/CD release-engineering domains
+- Expanded the repository from 15 to 18 WordPress review domains and from 30 to 36 Claude slash commands
+- Updated README coverage text, skills table, command listing, quick examples, trigger phrases, and repo badges to include the onboarding, ACF/content-modeling, headless WPGraphQL, and CI/CD release-engineering domains
 - Added guide links, FAQ links, and example-output framing to improve README discoverability and conversion for search visitors
 - Strengthened GitHub Pages metadata with canonical, Open Graph, Twitter, and structured-data tags
 - Added guide links and a guides section to the GitHub Pages homepage so workflow docs are easier to discover
