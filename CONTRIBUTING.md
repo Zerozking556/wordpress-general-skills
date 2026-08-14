@@ -60,7 +60,7 @@ That usually keeps the pack focused and avoids overlap.
 1. Fork and clone the repository:
 
    ```bash
-   git clone https://github.com/jorgerosal/wordpress-skills.git
+   git clone https://github.com/Zerozking556/wordpress-general-skills.git
    cd wordpress-skills
    ```
 

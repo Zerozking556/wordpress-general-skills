@@ -32,6 +32,14 @@ def parse_frontmatter(path: Path) -> dict[str, str]:
 
 
 def get_skill_names(base: Path) -> list[str]:
+    # On Windows, a repository symlink may be checked out as a text file when
+    # core.symlinks is unavailable. The upstream repo uses `skills` as an
+    # alias to `claude-skills`, so resolve that representation for validation.
+    if base.is_file():
+        alias = base.read_text(encoding="utf-8").strip()
+        candidate = (base.parent / alias).resolve()
+        if candidate.is_dir() and (ROOT in candidate.parents or candidate == ROOT):
+            base = candidate
     skills = sorted(path.parent.name for path in base.glob("*/SKILL.md"))
     if not skills:
         fail(f"No skills found in {base.relative_to(ROOT)}/")

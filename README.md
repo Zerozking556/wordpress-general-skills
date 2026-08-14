@@ -1,4 +1,4 @@
-# WordPress Skills for Claude and Codex
+# WordPress General Skills for Claude and Codex
 
 <p align="center">
   <img src="public/Claude%20Skills%20for%20Wordpress.jpg" alt="WordPress Skills for Claude and Codex" width="100%" />
@@ -9,12 +9,14 @@
     <img src="https://img.shields.io/badge/Claude%20Code-Ready-1f6feb?style=for-the-badge" alt="Claude Code Ready" />
   </a>
   <img src="https://img.shields.io/badge/Codex-Parallel%20skills-0a7ea4?style=for-the-badge" alt="Codex parallel skills" />
-  <img src="https://img.shields.io/badge/WordPress-18%20review%20domains-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress review domains" />
-  <img src="https://img.shields.io/badge/Commands-36%20slash%20commands-2da44e?style=for-the-badge" alt="36 slash commands" />
+  <img src="https://img.shields.io/badge/WordPress-19%20skills-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="19 WordPress skills" />
+  <img src="https://img.shields.io/badge/Commands-37%20slash%20commands-2da44e?style=for-the-badge" alt="37 slash commands" />
   <img src="https://img.shields.io/badge/Focus-Code%20review%20and%20triage-8250df?style=for-the-badge" alt="Code review and triage" />
 </p>
 
-Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for AI-assisted WordPress code review, fast triage, onboarding, and modern WordPress development workflows across plugin architecture, security audits, ACF/content modeling, headless WPGraphQL, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, release engineering, WP-CLI operations, Playground, and PHPStan.
+Professional WordPress skills for [Claude Code](https://claude.ai/code) and Codex, built for AI-assisted WordPress code review, fast triage, onboarding, general build/edit/diagnose workflows, and modern WordPress development across plugin architecture, security audits, ACF/content modeling, headless WPGraphQL, blocks, themes, WooCommerce, REST APIs, admin UI, migrations, accessibility, testing, release engineering, WP-CLI operations, Playground, and PHPStan.
+
+This distribution is based on [`jorgerosal/wordpress-skills`](https://github.com/jorgerosal/wordpress-skills), preserves its attribution and license, and adds the general-purpose `wp-general-workflow` router.
 
 ## Why This Pack
 
@@ -32,13 +34,15 @@ Professional WordPress skills for [Claude Code](https://claude.ai/code) and Code
 .claude-plugin/  # Claude Code plugin manifest
 claude-skills/   # Canonical Claude-oriented skill pack with shared reference docs
 skills/          # Claude Code plugin-compatible alias to claude-skills/
-codex-skills/    # Codex-oriented skill wrappers for the same seventeen domains
+codex-skills/    # Codex-oriented skill wrappers for 19 WordPress workflows
 commands/        # Claude slash commands
 public/          # README assets
 docs/            # GitHub Pages docs and guide surface
 ```
 
 The Codex skills reuse the domain references stored under `claude-skills/` so the review heuristics stay aligned without duplicating the whole reference library.
+
+`wp-general-workflow` is the general-purpose front door for building, editing, diagnosing, reviewing, and operating WordPress sites. It routes each request to the smallest useful specialist skill instead of duplicating the specialist references.
 
 The project also includes a deployable GitHub Pages site in `docs/`.
 
@@ -70,6 +74,7 @@ These pages are meant for both human readers and AI/search systems, with concret
 
 | Skill | Focus | Status |
 |-------|-------|--------|
+| **wp-general-workflow** | General WordPress routing for Elementor/Astra, Local/XAMPP, build/edit work, diagnosis, verification, and specialist handoffs | ✅ |
 | **wp-performance-review** | Performance bottlenecks, query patterns, caching, cron, asset loading | ✅ |
 | **wp-security-review** | XSS, SQL injection, CSRF, auth checks, file upload risks | ✅ |
 | **wp-plugin-development** | Plugin structure, lifecycle hooks, Settings API, i18n, WordPress.org standards | ✅ |
@@ -107,7 +112,7 @@ Best for shared projects, client work, and teams.
 
 ```bash
 # In your project root
-git submodule add https://github.com/jorgerosal/wordpress-skills.git .claude/plugins/wordpress-skills
+  git submodule add https://github.com/Zerozking556/wordpress-general-skills.git .claude/plugins/wordpress-skills
 git commit -m "Add WordPress Claude skills"
 ```
 
@@ -124,7 +129,7 @@ git commit -m "Update WordPress Claude skills"
 Best for solo usage across multiple projects.
 
 ```bash
-git clone https://github.com/jorgerosal/wordpress-skills.git ~/.claude/plugins/wordpress-skills
+git clone https://github.com/Zerozking556/wordpress-general-skills.git ~/.claude/plugins/wordpress-skills
 ```
 
 To update later:
@@ -163,6 +168,8 @@ The plugin install paths above use Claude Code's plugin loader, so commands are 
 
 Install the parallel Codex wrappers if you want the same WordPress domains available as Codex skills.
 
+For a mixed WordPress task, start with `wp-general-workflow`; it will route to the specialist skill or skills that match the evidence.
+
 #### Option 1: Install All Codex Skills
 
 ```bash
@@ -196,6 +203,7 @@ Claude skills include a full review command and a faster triage command.
 
 | Command | Use Case |
 |---------|----------|
+| `/wp-general [path]` | Route a WordPress build, edit, diagnosis, review, or operations task to the right specialist skills |
 | `/wp-perf-review [path]` | Full performance review with grouped findings and fix guidance |
 | `/wp-perf [path]` | Fast performance scan for critical patterns |
 | `/wp-sec-review [path]` | Full security review for exploitable patterns |

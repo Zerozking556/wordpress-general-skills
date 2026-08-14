@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **wp-general-workflow** skill with parallel Claude and Codex wrappers, routing references, and a general `/wp-general` command for WordPress build, edit, diagnosis, review, and operations work
 - **wp-site-audit-and-onboarding** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-onboard-review`, `/wp-onboard`)
 - **wp-acf-and-content-modeling** skill with parallel Claude and Codex wrappers, reference docs, and slash commands (`/wp-acf-review`, `/wp-acf`)
 - **wp-headless-and-wpgraphql** skill with parallel Claude and Codex wrappers, shared reference docs, and slash commands (`/wp-headless-review`, `/wp-headless`)
@@ -24,6 +25,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Added a standalone distribution layer that preserves the upstream `jorgerosal/wordpress-skills` pack and adds a general-purpose workflow router.
+- Updated repository validation to resolve the `skills` alias when Windows checks out the upstream symlink as a text file.
 - Expanded the repository from 15 to 18 WordPress review domains and from 30 to 36 Claude slash commands
 - Updated README coverage text, skills table, command listing, quick examples, trigger phrases, and repo badges to include the onboarding, ACF/content-modeling, headless WPGraphQL, and CI/CD release-engineering domains
 - Added guide links, FAQ links, and example-output framing to improve README discoverability and conversion for search visitors

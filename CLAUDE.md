@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository contains a parallel WordPress skill pack for Claude Code and Codex covering fourteen domains:
+This repository contains a parallel WordPress skill pack for Claude Code and Codex covering the original WordPress review domains plus a general workflow router:
 
 - Performance reviews
 - Security reviews
@@ -20,6 +20,7 @@ This repository contains a parallel WordPress skill pack for Claude Code and Cod
 - WP-CLI and operations reviews
 - Playground reviews
 - PHPStan reviews
+- General WordPress build, edit, diagnosis, verification, and specialist routing
 
 The Claude and Codex wrappers are designed for WordPress 6.x+ codebases and provide structured review workflows, shared reference docs, quick triage commands for Claude, and cross-skill handoffs when a finding belongs in another specialty.
 
@@ -27,6 +28,9 @@ The Claude and Codex wrappers are designed for WordPress 6.x+ codebases and prov
 
 ```
 claude-skills/                 # Claude skill definitions and shared references
+  wp-general-workflow/
+    SKILL.md                   # General routing workflow
+    references/                # Routing and quality gates
   wp-performance-review/
     SKILL.md                   # Main skill file with YAML frontmatter
     references/                # Supporting documentation
@@ -71,6 +75,8 @@ claude-skills/                 # Claude skill definitions and shared references
     references/
 
 codex-skills/                  # Codex-oriented wrappers for the same domains
+  wp-general-workflow/
+    SKILL.md
   wp-performance-review/
     SKILL.md
   wp-security-review/
